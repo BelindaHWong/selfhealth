@@ -23,6 +23,7 @@
 		780C3C672A6E9D7B0042F14E /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780C3C662A6E9D7B0042F14E /* HealthView.swift */; };
 		780C3C692A6E9FB90042F14E /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780C3C682A6E9FB90042F14E /* HomeScreen.swift */; };
 		780C3C6C2A6EAADD0042F14E /* ExperimentScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780C3C6B2A6EAADD0042F14E /* ExperimentScaffold.swift */; };
+		781ACC2C2A79138600DF05F6 /* ExperimentRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781ACC2B2A79138600DF05F6 /* ExperimentRecommendation.swift */; };
 		787B15482A4472CB00A56BAC /* SelfHealthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787B15472A4472CB00A56BAC /* SelfHealthApp.swift */; };
 		787B154A2A4472CB00A56BAC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787B15492A4472CB00A56BAC /* ContentView.swift */; };
 		787B154C2A4472CD00A56BAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787B154B2A4472CD00A56BAC /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		787B15592A4472CD00A56BAC /* SelfHealthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787B15582A4472CD00A56BAC /* SelfHealthTests.swift */; };
 		787B15632A4472CD00A56BAC /* SelfHealthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787B15622A4472CD00A56BAC /* SelfHealthUITests.swift */; };
 		787B15652A4472CD00A56BAC /* SelfHealthUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787B15642A4472CD00A56BAC /* SelfHealthUITestsLaunchTests.swift */; };
+		78D51C152A7744C500A6439B /* HealthKitIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D51C142A7744C500A6439B /* HealthKitIntegration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,7 @@
 		780C3C662A6E9D7B0042F14E /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthView.swift; sourceTree = "<group>"; };
 		780C3C682A6E9FB90042F14E /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		780C3C6B2A6EAADD0042F14E /* ExperimentScaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentScaffold.swift; sourceTree = "<group>"; };
+		781ACC2B2A79138600DF05F6 /* ExperimentRecommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentRecommendation.swift; sourceTree = "<group>"; };
 		787B15442A4472CB00A56BAC /* SelfHealth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfHealth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		787B15472A4472CB00A56BAC /* SelfHealthApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfHealthApp.swift; sourceTree = "<group>"; };
 		787B15492A4472CB00A56BAC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,6 +79,8 @@
 		787B155E2A4472CD00A56BAC /* SelfHealthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SelfHealthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		787B15622A4472CD00A56BAC /* SelfHealthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfHealthUITests.swift; sourceTree = "<group>"; };
 		787B15642A4472CD00A56BAC /* SelfHealthUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfHealthUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		78D51C132A773E1500A6439B /* SelfHealth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelfHealth.entitlements; sourceTree = "<group>"; };
+		78D51C142A7744C500A6439B /* HealthKitIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitIntegration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +134,9 @@
 			isa = PBXGroup;
 			children = (
 				780AB1E52A66B94E00382B93 /* ExperimentPageView.swift */,
+				78D51C142A7744C500A6439B /* HealthKitIntegration.swift */,
 				780C3C6B2A6EAADD0042F14E /* ExperimentScaffold.swift */,
+				781ACC2B2A79138600DF05F6 /* ExperimentRecommendation.swift */,
 			);
 			path = "Experiment Setup";
 			sourceTree = "<group>";
@@ -157,6 +164,7 @@
 		787B15462A4472CB00A56BAC /* SelfHealth */ = {
 			isa = PBXGroup;
 			children = (
+				78D51C132A773E1500A6439B /* SelfHealth.entitlements */,
 				780C3C6A2A6EA9E30042F14E /* Experiment Setup */,
 				780C3C5F2A6D47650042F14E /* App Views */,
 				780C3C5E2A6D47510042F14E /* Onboarding */,
@@ -332,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				780AB1E62A66B94E00382B93 /* ExperimentPageView.swift in Sources */,
+				78D51C152A7744C500A6439B /* HealthKitIntegration.swift in Sources */,
 				787B154A2A4472CB00A56BAC /* ContentView.swift in Sources */,
 				780C3C672A6E9D7B0042F14E /* HealthView.swift in Sources */,
 				787B15482A4472CB00A56BAC /* SelfHealthApp.swift in Sources */,
@@ -347,6 +356,7 @@
 				780AB1F02A694B3D00382B93 /* DashboardView.swift in Sources */,
 				780AB1D62A6551D400382B93 /* OnboardingContentView.swift in Sources */,
 				780AB1DA2A6555E600382B93 /* CardCell.swift in Sources */,
+				781ACC2C2A79138600DF05F6 /* ExperimentRecommendation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -487,7 +497,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -502,11 +512,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SelfHealth/SelfHealth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SelfHealth/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "SelfHealth wants to read your physical activity data in order to provide advice and self-experiment guidance.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "SelfHealth wants to read your physical activity data in order to provide advice and self-experiment guidance.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -530,11 +543,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SelfHealth/SelfHealth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SelfHealth/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "SelfHealth wants to read your physical activity data in order to provide advice and self-experiment guidance.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "SelfHealth wants to read your physical activity data in order to provide advice and self-experiment guidance.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
