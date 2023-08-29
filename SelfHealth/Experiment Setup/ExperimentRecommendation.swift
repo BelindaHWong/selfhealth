@@ -22,8 +22,8 @@ struct HealthData: Identifiable {
 }
 
 let adherenceDays: [Activities] = [
-    .init(name: "Complete Days", days: 11),
-    .init(name: "Missing Days", days: 629)
+    .init(name: "Missing Days", days: 11),
+    .init(name: "Complete Days", days: 629)
 ]
 
 let averageMins: [HealthData] = [
@@ -37,7 +37,7 @@ struct StepsChart: View {
             .font(.title2)
             .fontWeight(.semibold)
         
-        Text("Your daily average of 9,212 steps across 18 months is less than the WHO guideline of 10,000 steps per day.")
+        Text("Your daily average of 8,212 steps across 18 months is less than the WHO guideline of 10,000 steps per day.")
             .font(.footnote)
 //            .foregroundStyle(.gray)
         let recValue = 10000
@@ -114,7 +114,7 @@ struct LocationsChart: View {
             )
             .lineStyle(StrokeStyle(lineWidth: 3)).foregroundStyle(.orange)
             .annotation(position: .top, alignment: .trailing) {
-                Text("Recommended: \(recValue, format: .number)")
+                Text("Guideline: \(recValue, format: .number)")
                     .font(.headline)
                     .foregroundStyle(.orange)
             
@@ -179,122 +179,158 @@ struct DataCompleteness: View {
 }
 
 struct ExperimentRecommendation: View {
+    @State private var isRunningSelected = false
+    @State private var isPilatesSelected = false
+    @State private var isGymSelected = false
+    @State private var isShowingNextScreen = false
+    @State private var selectedExercise = ""
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            
-            Text("Select a preferred exercise")
-                .font(.title2)
-                .fontWeight(.semibold)
-    
-            HStack(alignment: .center, spacing: 5) {
-                Button(action: {
-                    // Button action code here
-                    print("View Recommendation Button Tapped")
-                }) {
-                    HStack(spacing: 10) {
-                        Image(systemName: "dumbbell.fill")
-                            .resizable()
-                            .frame(width: 15, height: 15) // Set the size of the health icon
-                            .foregroundColor(.white) // Set the color of the health icon
-                        
-                        Text("Gym")
-                            .foregroundColor(.white) // Set the text color to white
-                            .font(.headline) // Set the font style for the label
-                    }.frame(width:70,height:10)
-                
-                    .padding()
-                    .background(Color.blue) // Set the background color of the button
-                    .cornerRadius(16) // Set the corner radius of the button
-                }
-                Button(action: {
-                    // Button action code here
-//                    print("View Recommendation Button Tapped")
+            if(isShowingNextScreen) {
+                HomeView.init(isExperimentActive: true)
+//                HomeView()
+            } else {
+                Text("Select a preferred exercise")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+        
+                HStack(alignment: .center, spacing: 5) {
+                    Button(action: {
+                        // Button action code here
+                        print("View Recommendation Button Tapped")
+                        isRunningSelected = false
+                        isPilatesSelected = false
+                        isGymSelected.toggle()
+                    }) {
+                        HStack(spacing: 10) {
+                            Image(systemName: "dumbbell.fill")
+                                .resizable()
+                                .frame(width: 15, height: 15) // Set the size of the health icon
+                                .foregroundColor(isGymSelected ? .white : .blue) // Set the color of the health icon
+                            
+                            Text("Gym")
+                                .foregroundColor(isGymSelected ? .white : .blue) // Set the text color to white
+                                .font(.headline) // Set the font style for the label
+                        }.frame(width:70,height:10)
                     
-                }) {
-                    HStack() {
-                        Image(systemName: "figure.pilates")
-                            .resizable()
-                            .frame(width: 20, height: 15) // Set the size of the health icon
-                            .foregroundColor(.white) // Set the color of the health icon
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(isGymSelected ? Color.white : Color.blue, lineWidth: 2)
+                                .background(isGymSelected ? Color.blue : Color.white)
+                        ) // Set the background color of the button
+                        .cornerRadius(16) // Set the corner radius of the button
                         
-                        Text("Pilates")
-                            .foregroundColor(.white) // Set the text color to white
-                            .font(.headline) // Set the font style for the label
-                    }.frame(width:90,height:10)
-                
-                    .padding()
-                    .background(Color.blue) // Set the background color of the button
-                    .cornerRadius(16) // Set the corner radius of the button
+                    }
+                    Button(action: {
+                        // Button action code here
+    //                    print("View Recommendation Button Tapped")
+                        isPilatesSelected.toggle()
+                        isGymSelected = false
+                        isRunningSelected = false
+                    }) {
+                        HStack() {
+                            Image(systemName: "figure.pilates")
+                                .resizable()
+                                .frame(width: 20, height: 15) // Set the size of the health icon
+                                .foregroundColor(isPilatesSelected ? .white : .blue) // Set the color of the health icon
+                            
+                            Text("Pilates")
+                                .foregroundColor(isPilatesSelected ? .white : .blue) // Set the text color to white
+                                .font(.headline) // Set the font style for the label
+                        }.frame(width:90,height:10)
+                    
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(isPilatesSelected ? Color.white : Color.blue, lineWidth: 2)
+                                .background(isPilatesSelected ? Color.blue : Color.white)
+                        )
+                        .cornerRadius(16) // Set the corner radius of the button
+                    }
+                    Button(action: {
+                        // Button action code here
+                        print("View Recommendation Button Tapped")
+                        isRunningSelected.toggle()
+                        isPilatesSelected = false
+                        isGymSelected = false
+                    }) {
+                        HStack() {
+                            Image(systemName: "figure.run")
+                                .resizable()
+                                .frame(width: 15, height: 15) // Set the size of the health icon
+                                .foregroundColor(isRunningSelected ? .white : .blue) // Set the color of the health icon
+                            
+                            Text("Running")
+                                .foregroundColor(isRunningSelected ? .white : .blue) // Set the text color to white
+                                .font(.headline) // Set the font style for the label
+                        }.frame(width:90,height:10)
+                    
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(isRunningSelected ? Color.white : Color.blue, lineWidth: 2)
+                                .background(isRunningSelected ? Color.blue : Color.white)
+                        ) // Set the background color of the button
+                        .cornerRadius(16) // Set the corner radius of the button
+                    }
                 }
-                Button(action: {
-                    // Button action code here
-                    print("View Recommendation Button Tapped")
-                }) {
-                    HStack() {
-                        Image(systemName: "figure.run")
-                            .resizable()
-                            .frame(width: 15, height: 15) // Set the size of the health icon
-                            .foregroundColor(.white) // Set the color of the health icon
-                        
-                        Text("Running")
-                            .foregroundColor(.white) // Set the text color to white
-                            .font(.headline) // Set the font style for the label
-                    }.frame(width:90,height:10)
+    //            Text("Your experiment recommendation")
+    //                .font(.title2)
+    //                .fontWeight(.semibold)
+    //
                 
-                    .padding()
-                    .background(Color.blue) // Set the background color of the button
-                    .cornerRadius(16) // Set the corner radius of the button
+//                if(isPilatesSelected) {
+//                    selectedExercise = "pilates"
+//                } else if (isGymSelected) {
+//                    selectedExercise = "gym"
+//                } else if (isRunningSelected) {
+//                    selectedExercise = "running"
+//                }
+                var selectedExercise = isRunningSelected ? "running" : isPilatesSelected ? "pilates" : isGymSelected ? "gym" : "_____"
+                
+                let header = Text("Based on your historical data and preferences: I want to change my ") + Text(selectedExercise).bold() + Text(" (cause)").foregroundColor(Color.black).bold() + Text(" to observe impacts on my ") + Text("step count (effect)").foregroundColor(Color.black).bold() + Text(".")
+    //            header.font(.subheadline)
+    //                .multilineTextAlignment(.center)
+                VStack(alignment: .center, spacing: 10) {
+                    Text("Your experiment recommendation 🔬")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                    header.font(.subheadline).foregroundColor(.black).multilineTextAlignment(.center)
+                    
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            // Proceed action here'
+                            isShowingNextScreen = true
+                        }) {
+                            Text("Start Experiment")
+                                .font(.footnote)
+                                .foregroundColor(.blue)
+                        }
+                    }
                 }
+                .padding()
+                .background(Color.green.opacity(0.25))
+                .cornerRadius(12)
+                .frame(width:350, height:150)
+                
+
+              
+    //            Text("Missing Data Streaks")
+    //                .font(.title2)
+    //                .fontWeight(.semibold)
+    //
+    //            Text("Patterns of no data collected")
+    //                .font(.footnote)
+    //                .foregroundStyle(.gray)
+    //            DataCompleteness()
+                StepsChart()
+                LocationsChart()
+                
+            
             }
-//            Text("Your experiment recommendation")
-//                .font(.title2)
-//                .fontWeight(.semibold)
-//            
-            let header = Text("Based on your historical data and preferences, we recommend changing your ") + Text("gym (cause)").foregroundColor(Color.black).bold() + Text(" to observe impacts on your ") + Text("step count (effect)").foregroundColor(Color.black).bold() + Text(".")
-//            header.font(.subheadline)
-//                .multilineTextAlignment(.center)
-            VStack(alignment: .center, spacing: 10) {
-                Text("Your experiment recommendation 🔬")
-                    .font(.headline)
-                    .foregroundColor(.black)
-                header.font(.subheadline).foregroundColor(.black).multilineTextAlignment(.center)
-//                Button(action: {
-//                    // Proceed action here
-//                }) {
-//                    Text("Proceed >")
-
-//                }
-//                HStack {
-//                    Spacer()
-//                    Button(action: {
-//                        // Proceed action here
-//                    }) {
-//                        Text("Proceed >")
-//                            .font(.footnote)
-//                            .foregroundColor(.black)
-//                            .underline() // Add underline to the text
-//                    }
-//                }
-            }
-            .padding()
-            .background(Color.orange.opacity(0.5))
-            .cornerRadius(12)
-            .frame(width:350, height:150)
             
-
-          
-//            Text("Missing Data Streaks")
-//                .font(.title2)
-//                .fontWeight(.semibold)
-//            
-//            Text("Patterns of no data collected")
-//                .font(.footnote)
-//                .foregroundStyle(.gray)
-            StepsChart()
-            LocationsChart()
-            
-            
-
         }.padding()
     }
 }
