@@ -143,40 +143,7 @@ func date(year: Int, month: Int, day: Int = 1) -> Date {
 }
 //['2023-03-31', '2023-04-03', '2023-05-08', '2023-05-18', '2023-06-12', '2023-06-19', '2023-07-01', '2023-07-02', '2023-07-03', '2023-07-04', '2023-07-31']
 
-struct DataCompleteness: View {
-    var body: some View {
-        Text("Data Completeness")
-            .font(.title2)
-            .fontWeight(.semibold)
-        
-        Text("How many days of wearable data do you have?")
-            .font(.footnote)
-            .foregroundStyle(.gray)
-        ZStack {
-            Chart(adherenceDays, id: \.name) { element in
-                SectorMark(
-                    angle: .value("Days", element.days),
-                    innerRadius: .ratio(0.618),
-                    angularInset: 1.5
-                )
-                .cornerRadius(4)
-                .foregroundStyle(by: .value("Name", element.name))
-            }
-            .frame(height: 300)
-            .chartXAxis(.hidden)
-            .chartLegend(position: .bottom, alignment: .center, spacing: 7)
-            VStack {
-                Text("98%")
-                    .font(.title)
-                    .fontWeight(.semibold)
-                Text("of days have data")
-                    .font(.subheadline)
-                    .foregroundStyle(.gray)
-            }
-        }
-        .padding()
-    }
-}
+
 
 struct ExperimentRecommendation: View {
     @State private var isRunningSelected = false
@@ -184,20 +151,30 @@ struct ExperimentRecommendation: View {
     @State private var isGymSelected = false
     @State private var isShowingNextScreen = false
     @State private var selectedExercise = ""
+    
+    func getScreenValue() -> Bool {
+        print("Value from Page: ", isShowingNextScreen)
+        return isShowingNextScreen
+    }
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            if(isShowingNextScreen) {
-                HomeView.init(isExperimentActive: true)
-//                HomeView()
-            } else {
+        
+        if(isShowingNextScreen) {
+//                            HomeView.init(isExperimentActive: true)
+            ExperimentSummaryView(isActive: true)
+            
+//            HomeView.toggleExperimentActive(self: HomeView)
+//            HomeView(isExperimentActive: true)
+//            HomeView(isExperimentActive: isShowingNextScreen)
+           
+        } else {
+            VStack(alignment: .leading, spacing: 10) {
                 Text("Select a preferred exercise")
                     .font(.title2)
                     .fontWeight(.semibold)
-        
+                
                 HStack(alignment: .center, spacing: 5) {
                     Button(action: {
-                        // Button action code here
-                        print("View Recommendation Button Tapped")
                         isRunningSelected = false
                         isPilatesSelected = false
                         isGymSelected.toggle()
@@ -212,19 +189,19 @@ struct ExperimentRecommendation: View {
                                 .foregroundColor(isGymSelected ? .white : .blue) // Set the text color to white
                                 .font(.headline) // Set the font style for the label
                         }.frame(width:70,height:10)
-                    
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(isGymSelected ? Color.white : Color.blue, lineWidth: 2)
-                                .background(isGymSelected ? Color.blue : Color.white)
-                        ) // Set the background color of the button
-                        .cornerRadius(16) // Set the corner radius of the button
+                        
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(isGymSelected ? Color.white : Color.blue, lineWidth: 2)
+                                    .background(isGymSelected ? Color.blue : Color.white)
+                            ) // Set the background color of the button
+                            .cornerRadius(16) // Set the corner radius of the button
                         
                     }
                     Button(action: {
                         // Button action code here
-    //                    print("View Recommendation Button Tapped")
+                        //                    print("View Recommendation Button Tapped")
                         isPilatesSelected.toggle()
                         isGymSelected = false
                         isRunningSelected = false
@@ -239,14 +216,14 @@ struct ExperimentRecommendation: View {
                                 .foregroundColor(isPilatesSelected ? .white : .blue) // Set the text color to white
                                 .font(.headline) // Set the font style for the label
                         }.frame(width:90,height:10)
-                    
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(isPilatesSelected ? Color.white : Color.blue, lineWidth: 2)
-                                .background(isPilatesSelected ? Color.blue : Color.white)
-                        )
-                        .cornerRadius(16) // Set the corner radius of the button
+                        
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(isPilatesSelected ? Color.white : Color.blue, lineWidth: 2)
+                                    .background(isPilatesSelected ? Color.blue : Color.white)
+                            )
+                            .cornerRadius(16) // Set the corner radius of the button
                     }
                     Button(action: {
                         // Button action code here
@@ -265,37 +242,33 @@ struct ExperimentRecommendation: View {
                                 .foregroundColor(isRunningSelected ? .white : .blue) // Set the text color to white
                                 .font(.headline) // Set the font style for the label
                         }.frame(width:90,height:10)
-                    
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(isRunningSelected ? Color.white : Color.blue, lineWidth: 2)
-                                .background(isRunningSelected ? Color.blue : Color.white)
-                        ) // Set the background color of the button
-                        .cornerRadius(16) // Set the corner radius of the button
+                        
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(isRunningSelected ? Color.white : Color.blue, lineWidth: 2)
+                                    .background(isRunningSelected ? Color.blue : Color.white)
+                            ) // Set the background color of the button
+                            .cornerRadius(16) // Set the corner radius of the button
                     }
                 }
-    //            Text("Your experiment recommendation")
-    //                .font(.title2)
-    //                .fontWeight(.semibold)
-    //
                 
-//                if(isPilatesSelected) {
-//                    selectedExercise = "pilates"
-//                } else if (isGymSelected) {
-//                    selectedExercise = "gym"
-//                } else if (isRunningSelected) {
-//                    selectedExercise = "running"
-//                }
-                var selectedExercise = isRunningSelected ? "running" : isPilatesSelected ? "pilates" : isGymSelected ? "gym" : "_____"
+                let selectedExercise = isRunningSelected ? "running" : isPilatesSelected ? "pilates" : isGymSelected ? "gym" : "_____"
                 
                 let header = Text("Based on your historical data and preferences: I want to change my ") + Text(selectedExercise).bold() + Text(" (cause)").foregroundColor(Color.black).bold() + Text(" to observe impacts on my ") + Text("step count (effect)").foregroundColor(Color.black).bold() + Text(".")
-    //            header.font(.subheadline)
-    //                .multilineTextAlignment(.center)
+                //            header.font(.subheadline)
+                //                .multilineTextAlignment(.center)
                 VStack(alignment: .center, spacing: 10) {
-                    Text("Your experiment recommendation 🔬")
-                        .font(.headline)
-                        .foregroundColor(.black)
+                    HStack {
+                        Text("Your experiment recommendation")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                        Image(systemName: "lightbulb.max")
+                            .resizable()
+                            .frame(width: 22, height: 23) // Set the size of the health icon
+                            .foregroundColor(.blue)
+                    }
+                    
                     header.font(.subheadline).foregroundColor(.black).multilineTextAlignment(.center)
                     
                     HStack {
@@ -315,24 +288,24 @@ struct ExperimentRecommendation: View {
                 .cornerRadius(12)
                 .frame(width:350, height:150)
                 
-
-              
-    //            Text("Missing Data Streaks")
-    //                .font(.title2)
-    //                .fontWeight(.semibold)
-    //
-    //            Text("Patterns of no data collected")
-    //                .font(.footnote)
-    //                .foregroundStyle(.gray)
-    //            DataCompleteness()
+                
+                
+                //            Text("Missing Data Streaks")
+                //                .font(.title2)
+                //                .fontWeight(.semibold)
+                //
+                //            Text("Patterns of no data collected")
+                //                .font(.footnote)
+                //                .foregroundStyle(.gray)
+                //            DataCompleteness()
                 StepsChart()
                 LocationsChart()
-                
+            }.padding()
             
-            }
-            
-        }.padding()
+        }
+        
     }
+
 }
 
 struct ExperimentRecommendation_Previews: PreviewProvider {

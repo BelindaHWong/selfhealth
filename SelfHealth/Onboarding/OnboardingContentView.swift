@@ -17,6 +17,7 @@ struct OnboardingContentView: View {
     var body: some View {
         if isShowingAnotherView {
             HomeScreen()
+            
         } else {
             TabView(selection: $pageIndex) {
                 

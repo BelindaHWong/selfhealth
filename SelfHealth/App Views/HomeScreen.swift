@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @State private var isExpActive = false
+    static let shared = HomeScreen()
+
+
+    func toggleStateToTrue() {
+        isExpActive = true
+    }
+//    private init() {}
     var body: some View {
         TabView {
+        
             HomeView()
                 .tabItem() {
                     Image(systemName: "house.fill")
                     Text("Home")
-                }
+            }
+            
+        
+            
                 
             ExperimentScaffold()
                 .tabItem() {
@@ -26,11 +38,11 @@ struct HomeScreen: View {
                     Image(systemName: "heart.fill")
                     Text("Health")
                 }
-            ProfileView()
-                .tabItem() {
-                    Image(systemName: "person.circle.fill")
-                    Text("Profile")
-                }
+//            ProfileView()
+//                .tabItem() {
+//                    Image(systemName: "person.circle.fill")
+//                    Text("Profile")
+//                }
         }
     }
 }

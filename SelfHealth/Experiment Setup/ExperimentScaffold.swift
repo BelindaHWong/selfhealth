@@ -17,7 +17,6 @@ struct ExperimentScaffold: View {
     @State private var selectedEffect = "Option A"
     let effectOptions = ["Sleep quality", "Mood"]
 
-
     
     var body: some View {
     
