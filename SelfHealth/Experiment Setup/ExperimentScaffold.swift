@@ -55,7 +55,7 @@ struct ExperimentScaffold: View {
                         .frame(width: 400)
                         .multilineTextAlignment(.center)
                     
-                    let expGoal = Text("I want to find out whether my ") + Text("gym routine").foregroundColor(.red).bold() + Text(" affects my ") + Text("active minutes.").foregroundColor(green).bold()
+                    let expGoal = Text("I want to find out whether my ") + Text("running").foregroundColor(.red).bold() + Text(" affects my ") + Text("sleep quality.").foregroundColor(green).bold()
                     
                     expGoal
                         .font(.title3)
