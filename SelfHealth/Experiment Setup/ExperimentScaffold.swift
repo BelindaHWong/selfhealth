@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ExperimentScaffold: View {
+
     @State var isExpanded = false
     @State var selectedOption: String?
     @State var isShowingNextScreen = false
@@ -22,6 +23,7 @@ struct ExperimentScaffold: View {
     
         VStack {
             if isShowingNextScreen {
+                
                 ExperimentRecommendation()
             } else {
                 VStack(alignment: .center, spacing: 20) {
@@ -120,9 +122,9 @@ struct ExperimentScaffold: View {
             
     }
     
-    struct ExperimentScaffold_Previews: PreviewProvider {
-        static var previews: some View {
-            ExperimentScaffold()
-        }
-    }
+//    struct ExperimentScaffold_Previews: PreviewProvider {
+//        static var previews: some View {
+//            ExperimentScaffold(homeScreen: homeView)
+//        }
+//    }
 }

@@ -7,59 +7,59 @@
 
 import SwiftUI
 import Charts
-struct MonthlyHoursOfSunshine: Identifiable {
+struct Activity: Identifiable {
     let id = UUID()
-    var city: String
+    var condition: String
     var date: Date
     var hoursOfSunshine: Double
 
-    init(city: String, day: Int, month: Int, year: Int, hoursOfSunshine: Double) {
+    init(condition: String, day: Int, month: Int, year: Int, hoursOfSunshine: Double) {
         let calendar = Calendar.autoupdatingCurrent
         var components = DateComponents()
         components.year = year
         components.month = month
         components.day = day
-        self.city = city
+        self.condition = condition
         self.date = calendar.date(from: components)!
         self.hoursOfSunshine = hoursOfSunshine
     }
 }
 
-var runningData: [MonthlyHoursOfSunshine] = [
-    MonthlyHoursOfSunshine(city: "Running", day: 1, month: 3, year: 2023, hoursOfSunshine: 10400),
+var data: [Activity] = [
+    Activity(condition: "Running", day: 1, month: 3, year: 2023, hoursOfSunshine: 10400),
 
     // ...
-    MonthlyHoursOfSunshine(city: "Running", day: 4, month: 3, year: 2023, hoursOfSunshine: 14200)
-]
-
-var notRunningData: [MonthlyHoursOfSunshine] = [
-    MonthlyHoursOfSunshine(city: "Not Running", day: 1, month: 3, year: 2023, hoursOfSunshine: 8400),
-
-    // ...
-    MonthlyHoursOfSunshine(city: "Not Running", day: 4, month: 3, year: 2023, hoursOfSunshine: 4200)
-]
-
-var data: [MonthlyHoursOfSunshine] = [
-    MonthlyHoursOfSunshine(city: "Running", day: 1, month: 3, year: 2023, hoursOfSunshine: 10400),
-
-    // ...
-    MonthlyHoursOfSunshine(city: "Running", day: 4, month: 3, year: 2023, hoursOfSunshine: 14200),
-    MonthlyHoursOfSunshine(city: "Not Running", day: 2, month: 3, year: 2023, hoursOfSunshine: 10200),
-    MonthlyHoursOfSunshine(city: "Running", day: 5, month: 3, year: 2023, hoursOfSunshine: 12200),
-    MonthlyHoursOfSunshine(city: "Not Running", day: 7, month: 3, year: 2023, hoursOfSunshine: 11200),
-    MonthlyHoursOfSunshine(city: "Running", day: 8, month: 3, year: 2023, hoursOfSunshine: 16200),
-    MonthlyHoursOfSunshine(city: "Not Running", day: 9, month: 3, year: 2023, hoursOfSunshine: 10200),
-    MonthlyHoursOfSunshine(city: "Running", day: 10, month: 3, year: 2023, hoursOfSunshine: 16200),
-    MonthlyHoursOfSunshine(city: "Not Running", day: 11, month: 3, year: 2023, hoursOfSunshine: 7200),
-    MonthlyHoursOfSunshine(city: "Running", day: 12, month: 3, year: 2023, hoursOfSunshine: 12200),
-    MonthlyHoursOfSunshine(city: "Not Running", day: 13, month: 3, year: 2023, hoursOfSunshine: 8200)
+    Activity(condition: "Running", day: 4, month: 3, year: 2023, hoursOfSunshine: 14200),
+    Activity(condition: "Not Running", day: 2, month: 3, year: 2023, hoursOfSunshine: 10200),
+    Activity(condition: "Running", day: 5, month: 3, year: 2023, hoursOfSunshine: 12200),
+    Activity(condition: "Not Running", day: 7, month: 3, year: 2023, hoursOfSunshine: 11200),
+    Activity(condition: "Running", day: 8, month: 3, year: 2023, hoursOfSunshine: 16200),
+    Activity(condition: "Not Running", day: 9, month: 3, year: 2023, hoursOfSunshine: 10200),
+    Activity(condition: "Running", day: 10, month: 3, year: 2023, hoursOfSunshine: 16200),
+    Activity(condition: "Not Running", day: 11, month: 3, year: 2023, hoursOfSunshine: 7200),
+    Activity(condition: "Running", day: 12, month: 3, year: 2023, hoursOfSunshine: 12200),
+    Activity(condition: "Not Running", day: 13, month: 3, year: 2023, hoursOfSunshine: 8200)
 ]
 
 
 struct ChartView: View {
+    var data: [Activity]
     var body: some View {
         // Replace this with your chart view implementation
-        Text("Chart View")
+        Chart(data) {
+        PointMark(
+                x: .value("Month", $0.date, unit: .weekdayOrdinal),
+                y: .value("Hours of Sunshine", $0.hoursOfSunshine)
+            )
+            .foregroundStyle(by: .value("condition", $0.condition))
+            .symbol(by: .value("condition", $0.condition))
+        }
+        .chartLegend(position: .bottom, alignment: .center, spacing: 7)
+            .frame(width: 350, height: 130)
+        .chartForegroundStyleScale([
+            "Running": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
+            "Not Running": Color(hue:0, saturation: 0.81, brightness: 0.76)
+        ])
     }
 }
 
@@ -79,7 +79,7 @@ struct ExperimentSummaryView: View {
     @State private var showMoreText1 = false
     @State private var showMoreText2 = false
     @State private var showMoreText3 = false
-    @State private var isChartSelected = false
+    @State private var isChartSelected = true
     @State private var isListSelected = false
 
     var body: some View {
@@ -149,21 +149,21 @@ struct ExperimentSummaryView: View {
                         }
                         
                     }.padding(.bottom, 5)
-                    
-                    Chart(data) {
-                    PointMark(
-                            x: .value("Month", $0.date, unit: .weekdayOrdinal),
-                            y: .value("Hours of Sunshine", $0.hoursOfSunshine)
-                        )
-                        .foregroundStyle(by: .value("City", $0.city))
-                        .symbol(by: .value("City", $0.city))
-                    }
-                    .chartLegend(position: .bottom, alignment: .center, spacing: 7)
-                        .frame(width: 350, height: 130)
-                    .chartForegroundStyleScale([
-                        "Running": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
-                        "Not Running": Color(hue:0, saturation: 0.81, brightness: 0.76)
-                    ])
+                    ChartView(data: data)
+//                    Chart(data) {
+//                    PointMark(
+//                            x: .value("Month", $0.date, unit: .weekdayOrdinal),
+//                            y: .value("Hours of Sunshine", $0.hoursOfSunshine)
+//                        )
+//                        .foregroundStyle(by: .value("condition", $0.condition))
+//                        .symbol(by: .value("condition", $0.condition))
+//                    }
+//                    .chartLegend(position: .bottom, alignment: .center, spacing: 7)
+//                        .frame(width: 350, height: 130)
+//                    .chartForegroundStyleScale([
+//                        "Running": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
+//                        "Not Running": Color(hue:0, saturation: 0.81, brightness: 0.76)
+//                    ])
                 } else {
                     Text("Running (cause) & step count (effect)").font(.subheadline).padding(.bottom, 5)
                     
@@ -181,7 +181,7 @@ struct ExperimentSummaryView: View {
                         }
                 }
                     
-                Text("Gym (cause) & active mins (effect)").padding(.bottom, 5).font(.subheadline)
+                Text("Running (cause) & step count (effect)").padding(.bottom, 5).font(.subheadline)
                     
                 if showMoreText2 {
                     Chart(data) {
@@ -189,8 +189,8 @@ struct ExperimentSummaryView: View {
                             x: .value("Month", $0.date, unit: .weekdayOrdinal),
                             y: .value("Hours of Sunshine", $0.hoursOfSunshine)
                         )
-                        .foregroundStyle(by: .value("City", $0.city))
-                        .symbol(by: .value("City", $0.city))
+                        .foregroundStyle(by: .value("condition", $0.condition))
+                        .symbol(by: .value("condition", $0.condition))
                     }
                     .chartLegend(position: .bottom, alignment: .center, spacing: 7)
                         .frame(width: 350, height: 130)
@@ -212,7 +212,7 @@ struct ExperimentSummaryView: View {
                         }
                 }
                     
-                Text("Pilates (cause) & standing mins (effect)").font(.subheadline)
+                Text("Running (cause) & step count (effect)").font(.subheadline)
                     
                 if showMoreText3 {
                     Chart(data) {
@@ -220,8 +220,8 @@ struct ExperimentSummaryView: View {
                             x: .value("Month", $0.date, unit: .weekdayOrdinal),
                             y: .value("Hours of Sunshine", $0.hoursOfSunshine)
                         )
-                        .foregroundStyle(by: .value("City", $0.city))
-                        .symbol(by: .value("City", $0.city))
+                        .foregroundStyle(by: .value("condition", $0.condition))
+                        .symbol(by: .value("condition", $0.condition))
                     }
                     .chartLegend(position: .bottom, alignment: .center, spacing: 7)
                         .frame(width: 350, height: 130)

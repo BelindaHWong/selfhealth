@@ -9,14 +9,17 @@ import SwiftUI
 import Charts
 struct DataCompleteness: View {
     var body: some View {
+        Text("Health Data Summary")
+            .font(.title)
+            .fontWeight(.semibold)
         Text("Data Completeness")
             .font(.title2)
             .fontWeight(.semibold)
         
-        Text("How many days of wearable data do you have?")
+        Text("Out of 636 days, there are 11 days of missing data.")
             .font(.footnote)
-            .foregroundStyle(.gray)
-        ZStack {
+            
+        ZStack(alignment: .center) {
             Chart(adherenceDays, id: \.name) { element in
                 SectorMark(
                     angle: .value("Days", element.days),
@@ -26,7 +29,7 @@ struct DataCompleteness: View {
                 .cornerRadius(4)
                 .foregroundStyle(by: .value("Name", element.name))
             }
-            .frame(height: 300)
+            .frame(height: 260)
             .chartXAxis(.hidden)
             .chartLegend(position: .bottom, alignment: .center, spacing: 7)
             VStack {
@@ -38,7 +41,9 @@ struct DataCompleteness: View {
                     .foregroundStyle(.gray)
             }
         }
-        .padding()
+        StepsChart()
+
+    
     }
 }
 

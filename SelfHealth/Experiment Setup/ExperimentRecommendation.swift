@@ -37,7 +37,8 @@ struct StepsChart: View {
             .font(.title2)
             .fontWeight(.semibold)
         
-        Text("Your daily average of 8,212 steps across 18 months is less than the WHO guideline of 10,000 steps per day.")
+        Text("Your daily average of 5,977 steps across 18 months is less than the WHO guideline of 10,000 steps per day.")
+            .font(.system(size: 14))
             .font(.footnote)
 //            .foregroundStyle(.gray)
         let recValue = 10000
@@ -92,6 +93,7 @@ struct LocationsChart: View {
             .fontWeight(.semibold)
         
         Text("Your daily average of 80 minutes across 18 months is more than the WHO guideline of 60 minutes per day.")
+            .font(.system(size: 14))
             .font(.footnote)
 //            .foregroundStyle(.gray)
         let recValue = 60
@@ -151,6 +153,7 @@ struct ExperimentRecommendation: View {
     @State private var isGymSelected = false
     @State private var isShowingNextScreen = false
     @State private var selectedExercise = ""
+    @EnvironmentObject private var appState: AppState
     
     func getScreenValue() -> Bool {
         print("Value from Page: ", isShowingNextScreen)
@@ -163,6 +166,7 @@ struct ExperimentRecommendation: View {
 //                            HomeView.init(isExperimentActive: true)
             ExperimentSummaryView(isActive: true)
             
+        
 //            HomeView.toggleExperimentActive(self: HomeView)
 //            HomeView(isExperimentActive: true)
 //            HomeView(isExperimentActive: isShowingNextScreen)
@@ -255,7 +259,7 @@ struct ExperimentRecommendation: View {
                 
                 let selectedExercise = isRunningSelected ? "running" : isPilatesSelected ? "pilates" : isGymSelected ? "gym" : "_____"
                 
-                let header = Text("Based on your historical data and preferences: I want to change my ") + Text(selectedExercise).bold() + Text(" (cause)").foregroundColor(Color.black).bold() + Text(" to observe impacts on my ") + Text("step count (effect)").foregroundColor(Color.black).bold() + Text(".")
+                let header = Text("Based on your historical data and preferences: I want to change my ") + Text(selectedExercise).bold() + Text(" (independent variable)").foregroundColor(Color.black).bold() + Text(" to observe impacts on my ") + Text("step count (dependent variable)").foregroundColor(Color.black).bold() + Text(".")
                 //            header.font(.subheadline)
                 //                .multilineTextAlignment(.center)
                 VStack(alignment: .center, spacing: 10) {
@@ -276,6 +280,9 @@ struct ExperimentRecommendation: View {
                         Button(action: {
                             // Proceed action here'
                             isShowingNextScreen = true
+                            appState.isActivated = true
+                            var homeView = HomeView.shared
+                            homeView.isExperimentActive = true
                         }) {
                             Text("Start Experiment")
                                 .font(.footnote)
@@ -286,7 +293,7 @@ struct ExperimentRecommendation: View {
                 .padding()
                 .background(Color.green.opacity(0.25))
                 .cornerRadius(12)
-                .frame(width:350, height:150)
+                .frame(width:350, height:170)
                 
                 
                 

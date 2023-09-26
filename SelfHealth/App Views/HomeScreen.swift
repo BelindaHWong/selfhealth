@@ -7,31 +7,29 @@
 
 import SwiftUI
 
+
 struct HomeScreen: View {
-    @State private var isExpActive = false
-    static let shared = HomeScreen()
-
-
-    func toggleStateToTrue() {
-        isExpActive = true
-    }
+    @State private var isActive = false
+    @EnvironmentObject private var appState: AppState
+//    var homeView = HomeView()
 //    private init() {}
+    
     var body: some View {
+        var homeView = HomeView(isExperimentActive: appState.isActivated)
         TabView {
-        
-            HomeView()
-                .tabItem() {
+         
+            homeView.tabItem() {
                     Image(systemName: "house.fill")
                     Text("Home")
             }
             
-        
             
-                
+//            ExperimentSummaryView()
             ExperimentScaffold()
                 .tabItem() {
                     Image(systemName: "list.clipboard.fill")
                     Text("Experiments")
+                    
                 }
             HealthView()
                 .tabItem() {

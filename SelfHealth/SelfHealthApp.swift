@@ -8,8 +8,14 @@
 import SwiftUI
 import HealthKit
 
+class AppState: ObservableObject {
+    @Published var isActivated: Bool = false
+//    @Published var isActivated: Bool = true
+}
+
 @main
 struct SelfHealthApp: App {
+    @StateObject private var appState = AppState()
     private let healthStore: HKHealthStore
     private func requestHealthKitPermissions() {
         
@@ -36,7 +42,7 @@ struct SelfHealthApp: App {
         
         WindowGroup {
 //            ContentView()
-            OnboardingContentView().environmentObject(healthStore)
+            OnboardingContentView().environmentObject(healthStore).environmentObject(appState)
         }
     }
 }

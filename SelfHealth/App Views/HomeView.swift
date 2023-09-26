@@ -6,16 +6,24 @@
 //
 
 import SwiftUI
+import Charts
 
 struct HomeView: View {
-    // Should be false to start. True for dev rn.
-    @State var isExperimentActive = true
+    // isDayOne default is true. False for second part of user study.
+    @State var isDayOne = true
+//    @State var isDayOne = false
     @State private var isActivityCompleteSelected = false
     @State private var isActivityUncompleteSelected = false
-    @State private var selectedCause = "Update Status"
-    let causeOptions = ["Cannot Complete❓", "Completed ✅"]
-    func toggleExperimentActive() {
-        isExperimentActive.toggle()
+    @State private var selectedCause = ""
+    @State private var isChartSelected = false
+    @State private var isListSelected = true
+    var isExperimentActive: Bool = false
+    static let shared = HomeView()
+    
+    var causeOptions = ["Cannot Complete❓", "Completed ✅"]
+    
+    mutating func toggleActive() {
+        isExperimentActive = true
     }
     
     struct Person: Identifiable {
@@ -29,14 +37,52 @@ struct HomeView: View {
         
     }
 
+    struct DayOneGymChartView: View {
+        var data: [Activity]
+        var body: some View {
+            // Replace this with your chart view implementation
+            Chart(data) {
+            PointMark(
+                    x: .value("Month", $0.date, unit: .weekdayOrdinal),
+                    y: .value("Hours of Sunshine", $0.hoursOfSunshine)
+                )
+                .foregroundStyle(by: .value("condition", $0.condition))
+                .symbol(by: .value("condition", $0.condition))
+            }
+            .chartLegend(position: .bottom, alignment: .center, spacing: 7)
+                .frame(width: 350, height: 130)
+            .chartForegroundStyleScale([
+                "Gym": Color(hue: 0.33, saturation: 0.81, brightness: 0.76)
+            ])
+        }
+    }
+    
+    
+    struct GymChartView: View {
+        var data: [Activity]
+        var body: some View {
+            // Replace this with your chart view implementation
+            Chart(data) {
+            PointMark(
+                    x: .value("Month", $0.date, unit: .weekdayOrdinal),
+                    y: .value("Hours of Sunshine", $0.hoursOfSunshine)
+                )
+                .foregroundStyle(by: .value("condition", $0.condition))
+                .symbol(by: .value("condition", $0.condition))
+            }
+            .chartLegend(position: .bottom, alignment: .center, spacing: 7)
+                .frame(width: 350, height: 130)
+            .chartForegroundStyleScale([
+                "Gym": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
+                "No Gym": Color(hue:0, saturation: 0.81, brightness: 0.76),
+                "Missing": Color(hue: 0.0833, saturation: 0.86, brightness: 1.0)
+            ])
+        }
+    }
+    
     struct HeadingRow: View {
         var body: some View {
             HStack {
-//                Text("  Date")
-//                
-//                Text("                     Gym")
-//
-//                Text("       Steps")
                 Text("Date")
                     .padding(.horizontal, 30) // Add horizontal padding to "Date."
                 Text("   Gym")
@@ -48,15 +94,40 @@ struct HomeView: View {
         }
     }
     
+    var dayOneGymData: [Activity] = [
+        Activity(condition: "Gym", day: 29, month: 5, year: 2023, hoursOfSunshine: 6515)
+    ]
+    
+    var gymData: [Activity] = [
+        Activity(condition: "Gym", day: 29, month: 5, year: 2023, hoursOfSunshine: 6515),
+        Activity(condition: "No Gym", day: 31, month: 5, year: 2023, hoursOfSunshine: 5413),
+        Activity(condition: "Missing", day: 30, month: 5, year: 2023, hoursOfSunshine: 5391),
+        Activity(condition: "Gym", day: 1, month: 6, year: 2023, hoursOfSunshine: 5303),
+//        Activity(condition: "No Gym", day: 12, month: 6, year: 2023, hoursOfSunshine: 1343),
+        Activity(condition: "No Gym", day: 2, month: 6, year: 2023, hoursOfSunshine: 3640),
+        Activity(condition: "Gym", day: 3, month: 6, year: 2023, hoursOfSunshine: 9781),
+        Activity(condition: "No Gym", day: 4, month: 6, year: 2023, hoursOfSunshine: 6449),
+        Activity(condition: "Gym", day: 5, month: 6, year: 2023, hoursOfSunshine: 6844)
+    ]
+//    ('2023-06-08', 7569), ('2023-06-09', 8264), ('2023-06-10', 6449), ('2023-06-11', 3078), ('2023-06-13', 1343), ('2023-06-14', 4006), ('2023-06-15', 5067), ('2023-06-16', 6732), ('2023-06-17', 21592), ('2023-06-18', 3429),
+    
+    @State private var dayOnePeople = [
+        Person(givenName: "Mon 29/05/23", familyName: "  ✅", emailAddress: "   6,515")
+    ]
+    
+    @State private var dayOneMissing = [
+        Person(givenName: "Mon 29/05/23", familyName: "  ❓", emailAddress: "   6,515")
+    ]
+    
     @State private var people = [
         Person(givenName: "Mon 29/05/23", familyName: "  ✅", emailAddress: "   6,515"),
-        Person(givenName: "Tue 30/05/23", familyName: "   ❌", emailAddress: "  ❓"),
+        Person(givenName: "Tue 30/05/23", familyName: "   ❓", emailAddress: "   5,391"),
         Person(givenName: "Wed 31/05/23", familyName: "  ❌", emailAddress: "   5,413"),
         Person(givenName: "Thu 01/06/23", familyName: "   ✅", emailAddress: "   5,303"),
         Person(givenName: "Fri 02/06/23", familyName: "     ❌", emailAddress: "  3,640"),
         Person(givenName: "Sat 03/06/23", familyName: "    ✅", emailAddress: "   9,781"),
-        Person(givenName: "Sun 04/06/23", familyName: "  ✅", emailAddress: "   6,844"),
-        Person(givenName: "Mon 05/06/23", familyName: "  ❌", emailAddress: "  6,449")
+        Person(givenName: "Sun 04/06/23    ", familyName: "  ❌", emailAddress: "   6,449"),
+        Person(givenName: "Mon 05/06/23", familyName: "  ✅", emailAddress: "  6,844")
     ]
     
     struct PersonRow: View {
@@ -95,114 +166,175 @@ struct HomeView: View {
         }
     }
     
-    var body: some View {
-        
-//        isExperimentActive = ExperimentRecommendation.isShowing
-//        ExperimentRecommendation(isShowingNextScreen: isExperimentActive)
-            if(isExperimentActive) {
-                VStack(alignment: .leading, spacing: 10) {
+    struct InactiveVstack: View {
+        var body: some View {
+            VStack(spacing: 20) {
                     Text("Experiment Summary")
+                        .font(.title.bold())
+                        .foregroundColor(.gray)
+                    Text("You currently have no active experiments. Get started by selecting the Experiments tab!")
+                        .font(.title2)
+                        .frame(width: 300)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.gray)
+                        .fontWeight(.medium)
+                    Image(systemName: "list.clipboard.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(.gray)
+                        .frame(width: 100, height: 100)
+            }
+        }
+    }
+    
+   
+    
+    var body: some View {
+        //        toggleActive()
+
+        //        isExperimentActive = ExperimentRecommendation.isShowing
+        //        ExperimentRecommendation(isShowingNextScreen: isExperimentActive)
+        if(isExperimentActive) {
+            VStack(alignment: .leading, spacing: 5) {
+                if(isDayOne) {
+                    Text("Experiment Summary: 29 May 2023")
+                        .font(.system(size: 20))
                         .font(.title2)
                         .fontWeight(.semibold)
-                    
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 16)
-                            .foregroundColor(Color.white)
-                            .shadow(color: Color.gray.opacity(0.3), radius: 8, x: 0, y: 4)
-                        
-                        VStack(alignment: .center, spacing: 4) {
-                            Text("📌 Today's Action: Visit Gym")
-                                .foregroundColor(.black)
-                                .font(.headline)
-                            Picker("Cause", selection: $selectedCause) {
-                                ForEach(causeOptions, id: \.self) { option in
-                                    Text(option)
-                                        .tag(option)
-                                }
-                            }
-                            .pickerStyle(MenuPickerStyle())
-                            .frame(maxWidth: .infinity, maxHeight: 20)
-                            
-
-                        }
-                        .padding(10)
-                    }.frame(height: 70)
-                    
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 16)
-                            .foregroundColor(Color.white)
-                            .shadow(color: Color.gray.opacity(0.3), radius: 8, x: 0, y: 4)
-                        
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("🌟 Current Goal")
-                                .foregroundColor(.black)
-                                .font(.headline)
-                            
-                            Text("If I change my gym routine, does that affect step count?")
-                                .foregroundColor(.black)
-                                .font(.subheadline)
-                        }
-                        .padding(16)
+                } else {
+                    Text("Experiment Summary: 5 June 2023")
+                        .font(.system(size: 20))
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                }
                 
-                        
-                    }.frame(height: 95)
-
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundColor(Color.white)
+                        .shadow(color: Color.gray.opacity(0.3), radius: 8, x: 0, y: 4)
                     
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 16)
-                            .foregroundColor(Color.white)
-                            .shadow(color: Color.gray.opacity(0.3), radius: 8, x: 0, y: 4)
+                    VStack(alignment: .center, spacing: 4) {
+                        if selectedCause == "" {
+                            
+                        }
+                        Text("📌 Today's Action: Visit Gym")
+                            .foregroundColor(.black)
+                            .font(.headline)
+                        Picker("Cause", selection: $selectedCause) {
+                            ForEach(causeOptions, id: \.self) { option in
+                                Text(option)
+                                    .tag(option)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                        .frame(maxWidth: .infinity, maxHeight: 20)
+                        .font(.system(size: 9))
                         
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("📊 Analysis")
+                        
+                        
+                    }
+                    .padding(10)
+                }.frame(height: 70)
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundColor(Color.white)
+                        .shadow(color: Color.gray.opacity(0.3), radius: 8, x: 0, y: 4)
+                    
+                    VStack(spacing: 4) {
+                        Text("🌟 Current Goal: If I visit the gym, does that affect my step count?")
+                            .foregroundColor(.black)
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                        
+                        //                            Text("If I change my gym routine, does that affect my step count?")
+                        //                                .foregroundColor(.black)
+                        //                                .font(.system(size: 15))
+                        //                                .font(.subheadline)
+                        //                                .multilineTextAlignment(.center)
+                    }
+                    .padding(16)
+                    
+                    
+                }.frame(height: 80)
+                
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundColor(Color.white)
+                        .shadow(color: Color.gray.opacity(0.3), radius: 8, x: 0, y: 4)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        if(isDayOne) {
+                            Text("📊 Analysis: Day 1 (Started today)")
                                 .foregroundColor(.black)
                                 .font(.headline)
-                            
-                            Text("At this stage, your steps are 19% higher than your average of 5,977 steps when you visit the gym, and 14% lower when you do not visit.")
+                        } else {
+                            Text("📊 Analysis: Day 8 (Started 29 May)")
+                                .foregroundColor(.black)
+                                .font(.headline)
+                        }
+                        
+                        if(isDayOne) {
+                            Text("Log days with both conditions of visiting the gym and not visiting the gym to receive experiment analysis.")
                                 .foregroundColor(.black)
                                 .font(.system(size: 15))
                                 .font(.subheadline)
+                            
+                        } else {
+                            Text("At this stage, your steps are higher when you visit the gym. Your steps average 7,111 steps when you visit the gym and 5,167 steps when you do not.")
+                                .foregroundColor(.black)
+                                .font(.system(size: 14))
+                                .font(.subheadline)
                             HStack(alignment: .center, spacing: 10) {
                                 Text("75%")
-                                    .font(.system(size: 36, weight: .bold)) // Large font for percentage
+                                    .font(.system(size: 28, weight: .bold)) // Large font for percentage
                                     .foregroundColor(.blue) // Change the color as desired
                                 
-                                Text("of gym days, your steps average is reached.")
+                                Text("of gym days, you reached your long-term steps average of 5,977.")
                                     .font(.system(size: 14, weight: .semibold)) // Smaller font for the description
-                        
+                                
                                     .foregroundColor(.black)
-                                    .frame(width: 100)
+                                    .frame(width: 120)
                                 Spacer()
                                 
-                                Text("7")
-                                    .font(.system(size: 36, weight: .bold)) // Large font for percentage
-                                    .foregroundColor(.green) // Change the color as desired
+                                if(selectedCause == "Cannot Complete❓") {
+                                    Text("6")
+                                        .font(.system(size: 28, weight: .bold)) // Large font for percentage
+                                        .foregroundColor(.green) // Change the color as desired
+                                } else {
+                                    Text("7")
+                                        .font(.system(size: 28, weight: .bold)) // Large font for percentage
+                                        .foregroundColor(.green) // Change the color as desired
+                                }
+                                
                                 
                                 Text("day(s) of complete data")
                                     .font(.system(size: 14, weight: .semibold)) // Smaller font for the description
                                     .foregroundColor(.black)
                                     .frame(width: 80)
                             }
-//                            Spacer()
+                            //                            Spacer()
                             HStack(alignment: .center, spacing: 10) {
                                 Text("33%")
-                                    .font(.system(size: 36, weight: .bold)) // Large font for percentage
+                                    .font(.system(size: 28, weight: .bold)) // Large font for percentage
                                     .foregroundColor(.blue) // Change the color as desired
                                 
-                                Text("of non-gym days, your steps average is reached.")
+                                Text("of non-gym days, you reached your steps average.")
                                     .font(.system(size: 14, weight: .semibold)) // Smaller font for the description
-                        
+                                
                                     .foregroundColor(.black)
-                                    .frame(width: 100)
+                                    .frame(width: 120)
                                 Spacer()
                                 
-                                if(isActivityUncompleteSelected) {
+                                if(selectedCause == "Cannot Complete❓") {
                                     Text("2")
-                                        .font(.system(size: 36, weight: .bold)) // Large font for percentage
+                                        .font(.system(size: 28, weight: .bold)) // Large font for percentage
                                         .foregroundColor(.red) // Change the color as desired
                                 } else {
                                     Text("1")
-                                        .font(.system(size: 36, weight: .bold)) // Large font for percentage
+                                        .font(.system(size: 28, weight: .bold)) // Large font for percentage
                                         .foregroundColor(.red) // Change the color as desired
                                 }
                                 Text("day(s) of missing data")
@@ -210,54 +342,113 @@ struct HomeView: View {
                                     .foregroundColor(.black)
                                     .frame(width: 80)
                             }
-                            
                         }
-                        .padding()
-                    }.frame(height:290)
-                    
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 16)
-                            .foregroundColor(Color.white)
-                            .shadow(color: Color.gray.opacity(0.3), radius: 8, x: 0, y: 4)
                         
-                        VStack(alignment: .leading, spacing: 4) {
+                        
+                        
+                    }
+                    .padding()
+                }
+                .frame(height:250)
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundColor(Color.white)
+                        .shadow(color: Color.gray.opacity(0.3), radius: 8, x: 0, y: 4)
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack {
                             Text("📝 Experiment Results")
                                 .foregroundColor(.black)
                                 .font(.headline)
-
-                            PeopleList(people: $people)
+                            Spacer()
+                            Button(action: {
+                                isChartSelected.toggle()
+                                isListSelected = false
+                            }) {
+                                VStack {
+                                    Image(systemName: "chart.bar.fill")
+                                        .resizable()
+                                        .frame(width: 15, height: 15)
+                                        .foregroundColor(isChartSelected ? .blue : .gray)
+                                    
+                                    Text("Chart")
+                                        .foregroundColor(isChartSelected ? .blue : .gray)
+                                        .font(.caption)
+                                }
+                            }
+                            
+                            Button(action: {
+                                isListSelected.toggle()
+                                isChartSelected = false
+                            }) {
+                                VStack {
+                                    Image(systemName: "list.bullet")
+                                        .resizable()
+                                        .frame(width: 15, height: 15)
+                                        .foregroundColor(isListSelected ? .blue : .gray)
+                                    
+                                    Text("Table")
+                                        .foregroundColor(isListSelected ? .blue : .gray)
+                                        .font(.caption)
+                                }
+                            }
+                        }.padding(.bottom, 5)
+                        
+                        if(isChartSelected) {
+                            if(isDayOne) {
+                                DayOneGymChartView(data: dayOneGymData)
+                                    .frame(width: 330, height: 160)
+                            } else {
+                                GymChartView(data: gymData)
+                                    .frame(width: 330, height: 160)
+                            }
+                            
+                        } else if(isListSelected) {
+                            if(isDayOne && selectedCause == "Cannot Complete❓") {
+                                PeopleList(people: $dayOneMissing)
+                            }
+                            else if(isDayOne && selectedCause == "Completed ✅") {
+                                PeopleList(people: $dayOnePeople)
+                            } else if(!isDayOne) {
+                                PeopleList(people: $people)
+                            }
+                            
+                        } else {
+                            Text("Please select Chart or Table icon to view experiment results.")
+                                .font(.system(size: 16))
                         }
-                        .padding(16)
-                    }.frame(height: 200)
-                }.padding()
-            } else {
-                VStack(spacing: 20) {
-                    
+                        
+                    }
+                    .padding(16)
+                }.frame(height: 238)
+            }.padding()
+            
+        } else {
+         
+            VStack(spacing: 20) {
                     Text("Experiment Summary")
                         .font(.title.bold())
                         .foregroundColor(.gray)
-
-
-                    
                     Text("You currently have no active experiments. Get started by selecting the Experiments tab!")
                         .font(.title2)
                         .frame(width: 300)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.gray)
                         .fontWeight(.medium)
-                    
-                  
                     Image(systemName: "list.clipboard.fill")
                         .resizable()
                         .scaledToFit()
                         .foregroundColor(.gray)
                         .frame(width: 100, height: 100)
-                        
-                }
-
             }
+        
+        }
+        
 
     }
+ 
+    
 }
 
 struct HomeView_Previews: PreviewProvider {
