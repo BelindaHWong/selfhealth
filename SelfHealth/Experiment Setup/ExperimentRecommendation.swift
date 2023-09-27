@@ -37,7 +37,7 @@ struct StepsChart: View {
             .font(.title2)
             .fontWeight(.semibold)
         
-        Text("Your daily average of 5,977 steps across 18 months is less than the WHO guideline of 10,000 steps per day.")
+        Text("Your daily average of 5,977 steps across 18 months is less than the WHO guideline of 10,000 steps per day. Below is a long-term average for each day of the week.")
             .font(.system(size: 14))
             .font(.footnote)
 //            .foregroundStyle(.gray)
@@ -73,14 +73,14 @@ struct StepsChart: View {
 
     let seriesData = [
         (
-            type: "Active Minutes", data: [
+            type: "Steps", data: [
                 (weekday: "Mon", sales: 8423),
                 (weekday: "Tue", sales: 6843),
-                (weekday: "Wed", sales: 12282),
-                (weekday: "Thu", sales: 10221),
-                (weekday: "Fri", sales: 16721),
-                (weekday: "Sat", sales: 7877),
-                (weekday: "Sun", sales: 6400)
+                (weekday: "Wed", sales: 10221),
+                (weekday: "Thu", sales: 7877),
+                (weekday: "Fri", sales: 6400),
+                (weekday: "Sat", sales: 16721),
+                (weekday: "Sun", sales: 12282)
             ]
         )
     ]
@@ -283,6 +283,7 @@ struct ExperimentRecommendation: View {
                             appState.isActivated = true
                             var homeView = HomeView.shared
                             homeView.isExperimentActive = true
+                            appState.condition = selectedExercise
                         }) {
                             Text("Start Experiment")
                                 .font(.footnote)

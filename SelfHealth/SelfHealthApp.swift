@@ -11,6 +11,10 @@ import HealthKit
 class AppState: ObservableObject {
     @Published var isActivated: Bool = false
 //    @Published var isActivated: Bool = true
+    @Published var condition: String = ""
+//    @Published var condition: String = "gym"
+//    @Published var condition: String = "pilates"
+//    @Published var condition: String = "walking"
 }
 
 @main

@@ -16,8 +16,8 @@ struct DataCompleteness: View {
             .font(.title2)
             .fontWeight(.semibold)
         
-        Text("Out of 636 days, there are 11 days of missing data.")
-            .font(.footnote)
+        Text("Out of 636 days, there are 11 days of missing data in your long-term physical activity data.")
+            .font(.subheadline)
             
         ZStack(alignment: .center) {
             Chart(adherenceDays, id: \.name) { element in
@@ -31,7 +31,10 @@ struct DataCompleteness: View {
             }
             .frame(height: 260)
             .chartXAxis(.hidden)
-            .chartLegend(position: .bottom, alignment: .center, spacing: 7)
+            .chartLegend(position: .bottom, alignment: .center, spacing: 7).chartForegroundStyleScale([
+                "Complete Days": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
+                "Missing Days": Color(hue:0, saturation: 0.81, brightness: 0.76)
+            ])
             VStack {
                 Text("98%")
                     .font(.title)

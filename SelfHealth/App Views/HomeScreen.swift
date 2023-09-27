@@ -15,7 +15,10 @@ struct HomeScreen: View {
 //    private init() {}
     
     var body: some View {
-        var homeView = HomeView(isExperimentActive: appState.isActivated)
+        var homeView = HomeView(
+            isExperimentActive: appState.isActivated,
+            condition: appState.condition
+        )
         TabView {
          
             homeView.tabItem() {

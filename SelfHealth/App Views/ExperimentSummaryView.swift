@@ -41,6 +41,27 @@ var data: [Activity] = [
     Activity(condition: "Not Running", day: 13, month: 3, year: 2023, hoursOfSunshine: 8200)
 ]
 
+var pilatesData: [Activity] = [
+    Activity(condition: "Pilates", day: 12, month: 6, year: 2023, hoursOfSunshine: 58),
+    Activity(condition: "Not Pilates", day: 13, month: 6, year: 2023, hoursOfSunshine: 18),
+    Activity(condition: "Not Pilates", day: 14, month: 6, year: 2023, hoursOfSunshine: 68),
+    Activity(condition: "Pilates", day: 15, month: 6, year: 2023, hoursOfSunshine: 63),
+    Activity(condition: "Pilates", day: 16, month: 6, year: 2023, hoursOfSunshine: 23),
+    Activity(condition: "Pilates", day: 17, month: 6, year: 2023, hoursOfSunshine: 43),
+    Activity(condition: "Not Pilates", day: 18, month: 6, year: 2023, hoursOfSunshine: 53)
+]
+
+var walkingData: [Activity] = [
+    Activity(condition: "Walking", day: 16, month: 8, year: 2023, hoursOfSunshine: 128),
+    Activity(condition: "Not Walking", day: 17, month: 8, year: 2023, hoursOfSunshine: 68),
+    Activity(condition: "Not Walking", day: 18, month: 8, year: 2023, hoursOfSunshine: 98),
+    Activity(condition: "Walking", day: 19, month: 8, year: 2023, hoursOfSunshine: 163),
+    Activity(condition: "Walking", day: 20, month: 8, year: 2023, hoursOfSunshine: 123),
+    Activity(condition: "Walking", day: 21, month: 8, year: 2023, hoursOfSunshine: 176),
+    Activity(condition: "Not Walking", day: 22, month: 8, year: 2023, hoursOfSunshine: 82),
+    Activity(condition: "Not Walking", day: 23, month: 8, year: 2023, hoursOfSunshine: 54),
+    Activity(condition: "Walking", day: 24, month: 8, year: 2023, hoursOfSunshine: 103)
+]
 
 struct ChartView: View {
     var data: [Activity]
@@ -59,6 +80,48 @@ struct ChartView: View {
         .chartForegroundStyleScale([
             "Running": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
             "Not Running": Color(hue:0, saturation: 0.81, brightness: 0.76)
+        ])
+    }
+}
+
+struct PilatesChartView: View {
+    var data: [Activity]
+    var body: some View {
+        // Replace this with your chart view implementation
+        Chart(data) {
+        PointMark(
+                x: .value("Month", $0.date, unit: .weekdayOrdinal),
+                y: .value("Hours of Sunshine", $0.hoursOfSunshine)
+            )
+            .foregroundStyle(by: .value("condition", $0.condition))
+            .symbol(by: .value("condition", $0.condition))
+        }
+        .chartLegend(position: .bottom, alignment: .center, spacing: 7)
+            .frame(width: 350, height: 130)
+        .chartForegroundStyleScale([
+            "Pilates": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
+            "Not Pilates": Color(hue:0, saturation: 0.81, brightness: 0.76)
+        ])
+    }
+}
+
+struct WalkingChartView: View {
+    var data: [Activity]
+    var body: some View {
+        // Replace this with your chart view implementation
+        Chart(data) {
+        PointMark(
+                x: .value("Month", $0.date, unit: .weekdayOrdinal),
+                y: .value("Hours of Sunshine", $0.hoursOfSunshine)
+            )
+            .foregroundStyle(by: .value("condition", $0.condition))
+            .symbol(by: .value("condition", $0.condition))
+        }
+        .chartLegend(position: .bottom, alignment: .center, spacing: 7)
+            .frame(width: 350, height: 130)
+        .chartForegroundStyleScale([
+            "Walking": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
+            "Not Walking": Color(hue:0, saturation: 0.81, brightness: 0.76)
         ])
     }
 }
@@ -115,62 +178,50 @@ struct ExperimentSummaryView: View {
                 
                 if showMoreText1 {
                     HStack {
-                        Text("Running (cause) & step count (effect)").font(.subheadline).padding(.bottom, 5)
-                        Button(action: {
-                            isChartSelected.toggle()
-                            isListSelected = false
-                        }) {
-                            VStack {
-                                Image(systemName: "chart.bar.fill")
-                                    .resizable()
-                                    .frame(width: 15, height: 15)
-                                    .foregroundColor(isChartSelected ? .blue : .gray)
-
-                                Text("Chart")
-                                    .foregroundColor(isChartSelected ? .blue : .gray)
-                                    .font(.caption)
-                            }
-                        }
+                        Text("Running & step count: moderate casual relationship.").font(.subheadline).padding(.bottom, 5)
+//                        Button(action: {
+//                            isChartSelected.toggle()
+//                            isListSelected = false
+//                        }) {
+//                            VStack {
+//                                Image(systemName: "chart.bar.fill")
+//                                    .resizable()
+//                                    .frame(width: 15, height: 15)
+//                                    .foregroundColor(isChartSelected ? .blue : .gray)
+//
+//                                Text("Chart")
+//                                    .foregroundColor(isChartSelected ? .blue : .gray)
+//                                    .font(.caption)
+//                            }
+//                        }
                         
-                        Button(action: {
-                            isListSelected.toggle()
-                            isChartSelected = false
-                        }) {
-                            VStack {
-                               Image(systemName: "list.bullet")
-                                   .resizable()
-                                   .frame(width: 15, height: 15)
-                                   .foregroundColor(isListSelected ? .blue : .gray)
-
-                               Text("Table")
-                                   .foregroundColor(isListSelected ? .blue : .gray)
-                                   .font(.caption)
-                           }
-                        }
+//                        Button(action: {
+//                            isListSelected.toggle()
+//                            isChartSelected = false
+//                        }) {
+//                            VStack {
+//                               Image(systemName: "list.bullet")
+//                                   .resizable()
+//                                   .frame(width: 15, height: 15)
+//                                   .foregroundColor(isListSelected ? .blue : .gray)
+//
+//                               Text("Table")
+//                                   .foregroundColor(isListSelected ? .blue : .gray)
+//                                   .font(.caption)
+//                           }
+//                        }
                         
                     }.padding(.bottom, 5)
-                    ChartView(data: data)
-//                    Chart(data) {
-//                    PointMark(
-//                            x: .value("Month", $0.date, unit: .weekdayOrdinal),
-//                            y: .value("Hours of Sunshine", $0.hoursOfSunshine)
-//                        )
-//                        .foregroundStyle(by: .value("condition", $0.condition))
-//                        .symbol(by: .value("condition", $0.condition))
+//                    if(isChartSelected) {
+                        ChartView(data: data)
 //                    }
-//                    .chartLegend(position: .bottom, alignment: .center, spacing: 7)
-//                        .frame(width: 350, height: 130)
-//                    .chartForegroundStyleScale([
-//                        "Running": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
-//                        "Not Running": Color(hue:0, saturation: 0.81, brightness: 0.76)
-//                    ])
                 } else {
-                    Text("Running (cause) & step count (effect)").font(.subheadline).padding(.bottom, 5)
+                    Text("Running & step count: moderate casual relationship.").font(.subheadline).padding(.bottom, 5)
                     
                 }
                 
                 HStack {
-                    Text("Dec 12, 2022 - Dec 19, 2022")
+                    Text("Jun 12, 2022 - Jun 19, 2023")
                         .font(.title3).bold().foregroundColor(.blue)
                         Spacer()
                         Button(action: {
@@ -181,27 +232,14 @@ struct ExperimentSummaryView: View {
                         }
                 }
                     
-                Text("Running (cause) & step count (effect)").padding(.bottom, 5).font(.subheadline)
+                Text("Pilates & active mins: no causal relationship.").padding(.bottom, 5).font(.subheadline)
                     
                 if showMoreText2 {
-                    Chart(data) {
-                    PointMark(
-                            x: .value("Month", $0.date, unit: .weekdayOrdinal),
-                            y: .value("Hours of Sunshine", $0.hoursOfSunshine)
-                        )
-                        .foregroundStyle(by: .value("condition", $0.condition))
-                        .symbol(by: .value("condition", $0.condition))
-                    }
-                    .chartLegend(position: .bottom, alignment: .center, spacing: 7)
-                        .frame(width: 350, height: 130)
-                    .chartForegroundStyleScale([
-                        "Running": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
-                        "Not Running": Color(hue:0, saturation: 0.81, brightness: 0.76)
-                    ])
+                    PilatesChartView(data: pilatesData)
                 }
                 
                 HStack {
-                    Text("Dec 12, 2022 - Dec 19, 2022")
+                    Text("Aug 16, 2023 - Aug 24, 2023")
                             .font(.title3).bold().foregroundColor(.blue)
                         Spacer()
                         Button(action: {
@@ -212,26 +250,12 @@ struct ExperimentSummaryView: View {
                         }
                 }
                     
-                Text("Running (cause) & step count (effect)").font(.subheadline)
-                    
-                if showMoreText3 {
-                    Chart(data) {
-                    PointMark(
-                            x: .value("Month", $0.date, unit: .weekdayOrdinal),
-                            y: .value("Hours of Sunshine", $0.hoursOfSunshine)
-                        )
-                        .foregroundStyle(by: .value("condition", $0.condition))
-                        .symbol(by: .value("condition", $0.condition))
-                    }
-                    .chartLegend(position: .bottom, alignment: .center, spacing: 7)
-                        .frame(width: 350, height: 130)
-                    .chartForegroundStyleScale([
-                        "Running": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
-                        "Not Running": Color(hue:0, saturation: 0.81, brightness: 0.76)
-                    ])
-            
-                }
+                Text("Walking & standing mins: strong causal relationship.").font(.subheadline)
+
                 
+                if showMoreText3 {
+                    WalkingChartView(data: walkingData)
+                }
                
                 Spacer()
             }.padding()
