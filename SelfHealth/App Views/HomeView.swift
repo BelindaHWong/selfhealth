@@ -17,7 +17,7 @@ struct HomeView: View {
     @State private var selectedCause = ""
     @State private var isChartSelected = false
     @State private var isListSelected = true
-    var isExperimentActive: Bool = true
+    var isExperimentActive: Bool = false
     var condition: String = ""
     static let shared = HomeView()
     
