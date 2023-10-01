@@ -72,16 +72,21 @@ let averageMins: [HealthData] = [
 
 struct StepsChart: View {
     var body: some View {
-        Text("Steps Average Per Day")
-            .font(.title2)
+        Text("Steps - Daily Average")
+            .font(.title3)
             .fontWeight(.semibold)
         
-        Text("Your daily average of 5,977 steps across 18 months is less than the WHO guideline of 10,000 steps per day.")
+        Text("Your daily average of 5,977 steps across 1.5 years is less than the recommendation of 10,000 steps per day.")
             .font(.system(size: 14))
             .font(.footnote)
 //            .foregroundStyle(.gray)
         let recValue = 10000
         Chart {
+            RuleMark(
+                y: .value("Recommend", recValue)
+            )
+            .lineStyle(StrokeStyle(lineWidth: 2, dash: [5, 5], dashPhase: 0)).foregroundStyle(.orange)
+        
             ForEach(seriesData, id: \.type) { series in
                 ForEach(series.data, id: \.weekday) {
                     LineMark(
@@ -89,25 +94,28 @@ struct StepsChart: View {
                         y: .value("Sales", $0.sales)
                     )
                 }
-//                .foregroundStyle(.blue.opacity(0.25))
                 .foregroundStyle(by: .value("City", series.type))
                 .symbol(by: .value("City", series.type))
                 .interpolationMethod(.catmullRom)
 
             }
-            RuleMark(
-                y: .value("Recommend", recValue)
-            )
-            .lineStyle(StrokeStyle(lineWidth: 3, dash: [5, 5], dashPhase: 0)).foregroundStyle(.orange)
-//            .annotation(position: .top, alignment: .trailing) {
-//                Text("Recommended: \(recValue, format: .number)")
-//                    .font(.headline)
-//                    .foregroundStyle(.orange)
-//            
-//            }
         }
-        .chartYAxisLabel("Steps")
-        .chartLegend(position: .bottom, alignment: .center, spacing: 7)
+//        .chartYAxisLabel("Steps")
+        .chartLegend(position: .bottom, alignment: .center, spacing: 7) {
+            HStack {
+                Image(systemName: "circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 8, height: 8)
+                            .foregroundColor(.blue)
+                Text("Steps (Average)").font(.caption2).foregroundColor(.secondary)
+                    
+                Image(systemName: "line.diagonal")
+                    .rotationEffect(Angle(degrees: 45))
+                    .foregroundColor(.orange)
+                Text("WHO Guideline").font(.caption2).foregroundColor(.secondary)
+            }
+        }
     }
 
     let seriesData = [
@@ -127,16 +135,21 @@ struct StepsChart: View {
 
 struct LocationsChart: View {
     var body: some View {
-        Text("Active Minutes Average Per Day")
-            .font(.title2)
+        Text("Active Minutes - Daily Average")
+            .font(.title3)
             .fontWeight(.semibold)
         
-        Text("Your daily average of 80 minutes across 18 months is more than the WHO guideline of 60 minutes per day.")
+        Text("Your daily average of 80 minutes across 1.5 years exceeds the recommendation of 60 minutes per day.")
             .font(.system(size: 14))
             .font(.footnote)
 //            .foregroundStyle(.gray)
         let recValue = 60
         Chart {
+            RuleMark(
+                y: .value("Recommend", recValue)
+            )
+            .lineStyle(StrokeStyle(lineWidth: 2, dash: [5, 5], dashPhase: 0)).foregroundStyle(.orange)
+            
             ForEach(seriesData, id: \.type) { series in
                 ForEach(series.data, id: \.weekday) {
                     LineMark(
@@ -150,33 +163,43 @@ struct LocationsChart: View {
                 .interpolationMethod(.catmullRom)
 
             }
-            RuleMark(
-                y: .value("Recommend", recValue)
-            )
-            .lineStyle(StrokeStyle(lineWidth: 3, dash: [5, 5], dashPhase: 0)).foregroundStyle(.orange)
+            
 //            .annotation(position: .top, alignment: .trailing) {
 //                Text("Guideline: \(recValue, format: .number)")
 //                    .font(.headline)
 //                    .foregroundStyle(.orange)
-//            
+//
 //            }
         }
-        .chartYAxisLabel("Mins")
-        
-        .chartLegend(position: .bottom, alignment: .center, spacing: 7)
+//        .chartYAxisLabel("Mins")
+        .chartLegend(position: .bottom, alignment: .center, spacing: 7) {
+            HStack {
+                Image(systemName: "circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 8, height: 8)
+                            .foregroundColor(.blue)
+                Text("Active Minutes (Average) ").font(.caption2).foregroundColor(.secondary)
+                    
+                Image(systemName: "line.diagonal")
+                    .rotationEffect(Angle(degrees: 45))
+                    .foregroundColor(.orange)
+                Text("WHO Guideline").font(.caption2).foregroundColor(.secondary)
+            }
+        }
         
     }
 
     let seriesData = [
         (
             type: "Active Minutes (Average)", data: [
-                (weekday: "Mon", sales: 54),
-                (weekday: "Tue", sales: 42),
-                (weekday: "Wed", sales: 88),
-                (weekday: "Thu", sales: 67),
-                (weekday: "Fri", sales: 65),
-                (weekday: "Sat", sales: 92),
-                (weekday: "Sun", sales: 79)
+                (weekday: "Mon", sales: 64),
+                (weekday: "Tue", sales: 45),
+                (weekday: "Wed", sales: 105),
+                (weekday: "Thu", sales: 77),
+                (weekday: "Fri", sales: 55),
+                (weekday: "Sat", sales: 122),
+                (weekday: "Sun", sales: 89)
             ]
         )
     ]
@@ -191,7 +214,7 @@ func date(year: Int, month: Int, day: Int = 1) -> Date {
 
 struct ExperimentRecommendation: View {
     @State private var isWalkingSelected = false
-    @State private var isYogaSelected = false
+    @State private var isPilatesSelected = false
     @State private var isGymSelected = false
     @State private var isShowingNextScreen = false
     @State private var selectedExercise = ""
@@ -199,7 +222,7 @@ struct ExperimentRecommendation: View {
     
     @State private var isDropdownVisible = false
     @State private var selectedOption = "Select exercise option"
-    var dropdownOptions = ["🏋🏾 Gym", "🧘🏼‍♀️ Yoga", "🚶🏻‍♀️ Walking"]
+    var dropdownOptions = ["🏋🏾 Gym", "🧘🏼‍♀️ Pilates", "🚶🏻‍♀️ Walking"]
     
     func getScreenValue() -> Bool {
         print("Value from Page: ", isShowingNextScreen)
@@ -214,8 +237,8 @@ struct ExperimentRecommendation: View {
                 self.selectedOption = option
                 if(selectedOption == "🏋🏾 Gym") {
                     isGymSelected = true
-                } else if(selectedOption == "🧘🏼‍♀️ Yoga") {
-                    isYogaSelected = true
+                } else if(selectedOption == "🧘🏼‍♀️ Pilates") {
+                    isPilatesSelected = true
                 } else if(selectedOption == "🚶🏻‍♀️ Walking") {
                     isWalkingSelected = true
                 }
@@ -253,7 +276,7 @@ struct ExperimentRecommendation: View {
 //                HStack(alignment: .center, spacing: 5) {
 //                    Button(action: {
 //                        isWalkingSelected = false
-//                        isYogaSelected = false
+//                        isPilatesSelected = false
 //                        isGymSelected.toggle()
 //                    }) {
 //                        HStack(spacing: 10) {
@@ -279,7 +302,7 @@ struct ExperimentRecommendation: View {
 //                    Button(action: {
 //                        // Button action code here
 //                        //                    print("View Recommendation Button Tapped")
-//                        isYogaSelected.toggle()
+//                        isPilatesSelected.toggle()
 //                        isGymSelected = false
 //                        isWalkingSelected = false
 //                    }) {
@@ -287,18 +310,18 @@ struct ExperimentRecommendation: View {
 //                            Image(systemName: "figure.pilates")
 //                                .resizable()
 //                                .frame(width: 20, height: 15) // Set the size of the health icon
-//                                .foregroundColor(isYogaSelected ? .white : .blue) // Set the color of the health icon
+//                                .foregroundColor(isPilatesSelected ? .white : .blue) // Set the color of the health icon
 //                            
-//                            Text("yoga")
-//                                .foregroundColor(isYogaSelected ? .white : .blue) // Set the text color to white
+//                            Text("Pilates")
+//                                .foregroundColor(isPilatesSelected ? .white : .blue) // Set the text color to white
 //                                .font(.headline) // Set the font style for the label
 //                        }.frame(width:90,height:10)
 //                        
 //                            .padding()
 //                            .background(
 //                                RoundedRectangle(cornerRadius: 16)
-//                                    .stroke(isYogaSelected ? Color.white : Color.blue, lineWidth: 2)
-//                                    .background(isYogaSelected ? Color.blue : Color.white)
+//                                    .stroke(isPilatesSelected ? Color.white : Color.blue, lineWidth: 2)
+//                                    .background(isPilatesSelected ? Color.blue : Color.white)
 //                            )
 //                            .cornerRadius(16) // Set the corner radius of the button
 //                    }
@@ -306,7 +329,7 @@ struct ExperimentRecommendation: View {
 //                        // Button action code here
 //                        print("View Recommendation Button Tapped")
 //                        isWalkingSelected.toggle()
-//                        isYogaSelected = false
+//                        isPilatesSelected = false
 //                        isGymSelected = false
 //                    }) {
 //                        HStack() {
@@ -330,7 +353,7 @@ struct ExperimentRecommendation: View {
 //                    }
 //                }
                
-                let selectedExercise = isWalkingSelected ? "walking" : isYogaSelected ? "yoga" : isGymSelected ? "gym" : ""
+                let selectedExercise = isWalkingSelected ? "walking" : isPilatesSelected ? "pilates" : isGymSelected ? "gym" : ""
                 
                 
 //                let header = Text("Based on your historical data and preferences: I want to change my ") + Text(selectedExercise).bold() + Text(" (independent variable)").foregroundColor(Color.black).bold() + Text(" to observe impacts on my ") + Text("step count (dependent variable)").foregroundColor(Color.black).bold() + Text(".")
@@ -339,7 +362,7 @@ struct ExperimentRecommendation: View {
                     Text(selectedOption)
                         .onTapGesture {
                             self.isDropdownVisible.toggle()
-                        }
+                        }.bold()
                     
                     Image(systemName: "chevron.down")
                         .padding(.horizontal, 5)
@@ -351,12 +374,12 @@ struct ExperimentRecommendation: View {
                     ActionSheet(title: Text("Select exercise option for your self-experiment").bold(), buttons: dropdownButtons())
                 }
                 .font(.system(size: 14))
-                .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 0))
+                .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 0))
                 .foregroundColor(.blue)
                 .background(Color.white)
                 .cornerRadius(8)
                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                let headerEnding = Text("").foregroundColor(Color.black).bold() + Text(" to observe impacts on my ") + Text("step count").foregroundColor(Color.black).bold() + Text(".")
+                let headerEnding = Text("").foregroundColor(Color.black).bold() + Text(" to observe impacts on my ") + Text("step count").foregroundColor(Color.blue).bold() + Text(".")
 
             
                 VStack(alignment: .center, spacing: 10) {
@@ -375,7 +398,7 @@ struct ExperimentRecommendation: View {
                     headerEnding.font(.subheadline).foregroundColor(.black).multilineTextAlignment(.center)
                     
                     HStack() {
-                        Spacer()
+                    Spacer()
                         if(selectedExercise != "") {
                             Button(action: {
                                 isShowingNextScreen = true
@@ -384,21 +407,21 @@ struct ExperimentRecommendation: View {
                                 homeView.isExperimentActive = true
                                 appState.condition = selectedExercise
                             }) {
-                                Text("Start Experiment")
+                                Text("Start Experiment!")
                                     .font(.footnote)
-                                    .foregroundColor(.white)
-                                    .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                                    .background(Color.blue)
-                                    .cornerRadius(8)
+                                    .foregroundColor(.blue)
+//                                    .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
+//                                    .background(Color.blue)
+//                                    .cornerRadius(8)
                             }
                         }
                         
                     }
                 }
-                .padding()
+                .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                 .background(Color.green.opacity(0.25))
                 .cornerRadius(12)
-                .frame(width:350, height:200)
+                .frame(width:360, height:170)
                 
                 
                 

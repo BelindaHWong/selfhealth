@@ -41,7 +41,6 @@ struct HomeView: View {
     struct DayOneGymChartView: View {
         var data: [Activity]
         var body: some View {
-            // Replace this with your chart view implementation
             Chart(data) {
             PointMark(
                     x: .value("Month", $0.date, unit: .weekdayOrdinal),
@@ -55,6 +54,8 @@ struct HomeView: View {
             .chartForegroundStyleScale([
                 "Gym": Color(hue: 0.33, saturation: 0.81, brightness: 0.76)
             ])
+            
+           
         }
     }
     

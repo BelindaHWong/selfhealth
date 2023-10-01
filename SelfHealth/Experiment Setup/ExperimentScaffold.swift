@@ -30,7 +30,7 @@ struct ExperimentScaffold: View {
                     Text("Your first experiment")
                         .font(.title.bold())
                         .multilineTextAlignment(.center)
-                    let header = Text("Find out if there is a relationship between two variables in your daily life by identifying a ") + Text("cause").foregroundColor(Color.red).bold() + Text(" and an ") + Text("effect").foregroundColor(green).bold()
+                    let header = Text("Find out if there is a relationship between two variables in your daily life by identifying a possible ") + Text("cause").foregroundColor(Color.red).bold() + Text(" and an ") + Text("effect").foregroundColor(green).bold()
                     header.font(.title3)
                         .frame(width: 300)
                         .multilineTextAlignment(.center)

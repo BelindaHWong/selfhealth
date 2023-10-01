@@ -41,14 +41,14 @@ var data: [Activity] = [
     Activity(condition: "Not Running", day: 13, month: 3, year: 2023, hoursOfSunshine: 8200)
 ]
 
-var pilatesData: [Activity] = [
-    Activity(condition: "Pilates", day: 12, month: 6, year: 2023, hoursOfSunshine: 58),
-    Activity(condition: "Not Pilates", day: 13, month: 6, year: 2023, hoursOfSunshine: 18),
-    Activity(condition: "Not Pilates", day: 14, month: 6, year: 2023, hoursOfSunshine: 68),
-    Activity(condition: "Pilates", day: 15, month: 6, year: 2023, hoursOfSunshine: 63),
-    Activity(condition: "Pilates", day: 16, month: 6, year: 2023, hoursOfSunshine: 23),
-    Activity(condition: "Pilates", day: 17, month: 6, year: 2023, hoursOfSunshine: 43),
-    Activity(condition: "Not Pilates", day: 18, month: 6, year: 2023, hoursOfSunshine: 53)
+var YogaData: [Activity] = [
+    Activity(condition: "Yoga", day: 12, month: 6, year: 2023, hoursOfSunshine: 58),
+    Activity(condition: "Not Yoga", day: 13, month: 6, year: 2023, hoursOfSunshine: 18),
+    Activity(condition: "Not Yoga", day: 14, month: 6, year: 2023, hoursOfSunshine: 68),
+    Activity(condition: "Yoga", day: 15, month: 6, year: 2023, hoursOfSunshine: 63),
+    Activity(condition: "Yoga", day: 16, month: 6, year: 2023, hoursOfSunshine: 23),
+    Activity(condition: "Yoga", day: 17, month: 6, year: 2023, hoursOfSunshine: 43),
+    Activity(condition: "Not Yoga", day: 18, month: 6, year: 2023, hoursOfSunshine: 53)
 ]
 
 var walkingData: [Activity] = [
@@ -84,7 +84,7 @@ struct ChartView: View {
     }
 }
 
-struct PilatesChartView: View {
+struct YogaChartView: View {
     var data: [Activity]
     var body: some View {
         // Replace this with your chart view implementation
@@ -99,8 +99,8 @@ struct PilatesChartView: View {
         .chartLegend(position: .bottom, alignment: .center, spacing: 7)
             .frame(width: 350, height: 130)
         .chartForegroundStyleScale([
-            "Pilates": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
-            "Not Pilates": Color(hue:0, saturation: 0.81, brightness: 0.76)
+            "Yoga": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
+            "Not Yoga": Color(hue:0, saturation: 0.81, brightness: 0.76)
         ])
     }
 }
@@ -232,10 +232,10 @@ struct ExperimentSummaryView: View {
                         }
                 }
                     
-                Text("Pilates & active mins: no causal relationship.").padding(.bottom, 5).font(.subheadline)
+                Text("Yoga & active mins: no causal relationship.").padding(.bottom, 5).font(.subheadline)
                     
                 if showMoreText2 {
-                    PilatesChartView(data: pilatesData)
+                    YogaChartView(data: YogaData)
                 }
                 
                 HStack {
