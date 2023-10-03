@@ -24,7 +24,7 @@ struct DataValidityChart: View {
             .chartXAxis(.hidden)
             .chartLegend(position: .bottom, alignment: .center, spacing: 7).chartForegroundStyleScale([
                 "Complete Days": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
-                "Missing Days": Color(hue:0, saturation: 0.81, brightness: 0.76)
+                "Missing Days": Color(hue: 0.0833, saturation: 0.86, brightness: 1.0)
             ])
             VStack {
                 Text("98%")
@@ -54,7 +54,7 @@ struct DataCompletenessChart: View {
             .chartXAxis(.hidden)
             .chartLegend(position: .bottom, alignment: .center, spacing: 7).chartForegroundStyleScale([
                 "Complete Days": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
-                "Missing Days": Color(hue:0, saturation: 0.81, brightness: 0.76)
+                "Missing Days": Color(hue: 0.0833, saturation: 0.86, brightness: 1.0)
             ])
             VStack {
                 Text("98%")

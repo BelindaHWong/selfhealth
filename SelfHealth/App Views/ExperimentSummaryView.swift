@@ -54,13 +54,12 @@ var YogaData: [Activity] = [
 var walkingData: [Activity] = [
     Activity(condition: "Walking", day: 16, month: 8, year: 2023, hoursOfSunshine: 128),
     Activity(condition: "Not Walking", day: 17, month: 8, year: 2023, hoursOfSunshine: 68),
-    Activity(condition: "Not Walking", day: 18, month: 8, year: 2023, hoursOfSunshine: 98),
+    Activity(condition: "Not Walking", day: 18, month: 8, year: 2023, hoursOfSunshine: 78),
     Activity(condition: "Walking", day: 19, month: 8, year: 2023, hoursOfSunshine: 163),
-    Activity(condition: "Walking", day: 20, month: 8, year: 2023, hoursOfSunshine: 123),
+    Activity(condition: "Walking", day: 20, month: 8, year: 2023, hoursOfSunshine: 133),
     Activity(condition: "Walking", day: 21, month: 8, year: 2023, hoursOfSunshine: 176),
     Activity(condition: "Not Walking", day: 22, month: 8, year: 2023, hoursOfSunshine: 82),
-    Activity(condition: "Not Walking", day: 23, month: 8, year: 2023, hoursOfSunshine: 54),
-    Activity(condition: "Walking", day: 24, month: 8, year: 2023, hoursOfSunshine: 103)
+    Activity(condition: "Not Walking", day: 23, month: 8, year: 2023, hoursOfSunshine: 54)
 ]
 
 struct ChartView: View {
@@ -76,11 +75,12 @@ struct ChartView: View {
             .symbol(by: .value("condition", $0.condition))
         }
         .chartLegend(position: .bottom, alignment: .center, spacing: 7)
-            .frame(width: 350, height: 130)
+            .frame(width: 350, height: 140)
         .chartForegroundStyleScale([
             "Running": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
             "Not Running": Color(hue:0, saturation: 0.81, brightness: 0.76)
         ])
+        .chartYAxisLabel("Steps")
     }
 }
 
@@ -97,11 +97,12 @@ struct YogaChartView: View {
             .symbol(by: .value("condition", $0.condition))
         }
         .chartLegend(position: .bottom, alignment: .center, spacing: 7)
-            .frame(width: 350, height: 130)
+            .frame(width: 350, height: 140)
         .chartForegroundStyleScale([
             "Yoga": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
             "Not Yoga": Color(hue:0, saturation: 0.81, brightness: 0.76)
         ])
+        .chartYAxisLabel("Mins")
     }
 }
 
@@ -118,11 +119,12 @@ struct WalkingChartView: View {
             .symbol(by: .value("condition", $0.condition))
         }
         .chartLegend(position: .bottom, alignment: .center, spacing: 7)
-            .frame(width: 350, height: 130)
+            .frame(width: 350, height: 140)
         .chartForegroundStyleScale([
             "Walking": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
             "Not Walking": Color(hue:0, saturation: 0.81, brightness: 0.76)
         ])
+        .chartYAxisLabel("Mins")
     }
 }
 
@@ -139,9 +141,9 @@ struct TableView: View {
                                                     
 struct ExperimentSummaryView: View {
     @State var isActive = true
-    @State private var showMoreText1 = false
-    @State private var showMoreText2 = false
-    @State private var showMoreText3 = false
+    @State private var showMoreText1 = true
+    @State private var showMoreText2 = true
+    @State private var showMoreText3 = true
     @State private var isChartSelected = true
     @State private var isListSelected = false
 
@@ -178,7 +180,7 @@ struct ExperimentSummaryView: View {
                 
                 if showMoreText1 {
                     HStack {
-                        Text("Running & step count: moderate casual relationship.").font(.subheadline).padding(.bottom, 5)
+                        Text("If you run, your step count is moderately higher.").font(.subheadline)
 //                        Button(action: {
 //                            isChartSelected.toggle()
 //                            isListSelected = false
@@ -216,7 +218,7 @@ struct ExperimentSummaryView: View {
                         ChartView(data: data)
 //                    }
                 } else {
-                    Text("Running & step count: moderate casual relationship.").font(.subheadline).padding(.bottom, 5)
+                    Text("If you run, your step count is moderately higher.").font(.subheadline).padding(.bottom, 5)
                     
                 }
                 
@@ -232,7 +234,7 @@ struct ExperimentSummaryView: View {
                         }
                 }
                     
-                Text("Yoga & active mins: no causal relationship.").padding(.bottom, 5).font(.subheadline)
+                Text("If you do yoga, this does not affect active minutes.").font(.subheadline)
                     
                 if showMoreText2 {
                     YogaChartView(data: YogaData)
@@ -250,7 +252,7 @@ struct ExperimentSummaryView: View {
                         }
                 }
                     
-                Text("Walking & standing mins: strong causal relationship.").font(.subheadline)
+                Text("If you do walks, standing minutes are much higher.").font(.subheadline)
 
                 
                 if showMoreText3 {
