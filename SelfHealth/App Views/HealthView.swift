@@ -57,7 +57,7 @@ struct DataCompletenessChart: View {
                 "Missing Days": Color(hue: 0.0833, saturation: 0.86, brightness: 1.0)
             ])
             VStack {
-                Text("98%")
+                Text("77%")
                     .font(.title)
                     .fontWeight(.semibold)
                 Text("of days have data")
@@ -224,14 +224,14 @@ struct DataCompleteness: View {
             .font(.title2)
             .fontWeight(.semibold)
         
-        Text("Out of 636 days, there are 11 days of missing data in your long-term physical activity data.")
+        Text("Out of 636 days, there are 142 days of missing data in your long-term physical activity data.")
             .font(.subheadline)
       
         DataCompletenessChart()
         
         
         StepsChart()
-//        LocationDetailsChart()
+//        LocationsChart()
     
     }
 }

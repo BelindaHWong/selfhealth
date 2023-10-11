@@ -27,39 +27,38 @@ struct Activity: Identifiable {
 
 var data: [Activity] = [
     Activity(condition: "Running", day: 1, month: 3, year: 2023, hoursOfSunshine: 10400),
-
-    // ...
+    Activity(condition: "Not Running", day: 3, month: 3, year: 2023, hoursOfSunshine: 8200),
     Activity(condition: "Running", day: 4, month: 3, year: 2023, hoursOfSunshine: 14200),
     Activity(condition: "Not Running", day: 2, month: 3, year: 2023, hoursOfSunshine: 10200),
     Activity(condition: "Running", day: 5, month: 3, year: 2023, hoursOfSunshine: 12200),
+    Activity(condition: "Incomplete", day: 6, month: 3, year: 2023, hoursOfSunshine: 7200),
     Activity(condition: "Not Running", day: 7, month: 3, year: 2023, hoursOfSunshine: 11200),
     Activity(condition: "Running", day: 8, month: 3, year: 2023, hoursOfSunshine: 16200),
     Activity(condition: "Not Running", day: 9, month: 3, year: 2023, hoursOfSunshine: 10200),
-    Activity(condition: "Running", day: 10, month: 3, year: 2023, hoursOfSunshine: 16200),
-    Activity(condition: "Not Running", day: 11, month: 3, year: 2023, hoursOfSunshine: 7200),
-    Activity(condition: "Running", day: 12, month: 3, year: 2023, hoursOfSunshine: 12200),
-    Activity(condition: "Not Running", day: 13, month: 3, year: 2023, hoursOfSunshine: 8200)
+    Activity(condition: "Running", day: 10, month: 3, year: 2023, hoursOfSunshine: 16200)
+ /*   Activity(condition: "Not Running", day:*/ /*11, month: 3, year: 2023, hoursOfSunshine: 7200)*/
 ]
 
 var YogaData: [Activity] = [
-    Activity(condition: "Yoga", day: 12, month: 6, year: 2023, hoursOfSunshine: 58),
-    Activity(condition: "Not Yoga", day: 13, month: 6, year: 2023, hoursOfSunshine: 18),
-    Activity(condition: "Not Yoga", day: 14, month: 6, year: 2023, hoursOfSunshine: 68),
-    Activity(condition: "Yoga", day: 15, month: 6, year: 2023, hoursOfSunshine: 63),
-    Activity(condition: "Yoga", day: 16, month: 6, year: 2023, hoursOfSunshine: 23),
-    Activity(condition: "Yoga", day: 17, month: 6, year: 2023, hoursOfSunshine: 43),
-    Activity(condition: "Not Yoga", day: 18, month: 6, year: 2023, hoursOfSunshine: 53)
+    Activity(condition: "Yoga", day: 12, month: 4, year: 2023, hoursOfSunshine: 58),
+    Activity(condition: "Not Yoga", day: 13, month: 4, year: 2023, hoursOfSunshine: 18),
+    Activity(condition: "Not Yoga", day: 14, month: 4, year: 2023, hoursOfSunshine: 68),
+    Activity(condition: "Yoga", day: 15, month: 4, year: 2023, hoursOfSunshine: 63),
+    Activity(condition: "Yoga", day: 16, month: 4, year: 2023, hoursOfSunshine: 23),
+    Activity(condition: "Incomplete", day: 17, month: 4, year: 2023, hoursOfSunshine: 63),
+    Activity(condition: "Yoga", day: 18, month: 4, year: 2023, hoursOfSunshine: 43),
+    Activity(condition: "Not Yoga", day: 19, month: 4, year: 2023, hoursOfSunshine: 53)
 ]
 
 var walkingData: [Activity] = [
-    Activity(condition: "Walking", day: 16, month: 8, year: 2023, hoursOfSunshine: 128),
-    Activity(condition: "Not Walking", day: 17, month: 8, year: 2023, hoursOfSunshine: 68),
-    Activity(condition: "Not Walking", day: 18, month: 8, year: 2023, hoursOfSunshine: 78),
-    Activity(condition: "Walking", day: 19, month: 8, year: 2023, hoursOfSunshine: 163),
-    Activity(condition: "Walking", day: 20, month: 8, year: 2023, hoursOfSunshine: 133),
-    Activity(condition: "Walking", day: 21, month: 8, year: 2023, hoursOfSunshine: 176),
-    Activity(condition: "Not Walking", day: 22, month: 8, year: 2023, hoursOfSunshine: 82),
-    Activity(condition: "Not Walking", day: 23, month: 8, year: 2023, hoursOfSunshine: 54)
+    Activity(condition: "Walking", day: 16, month: 5, year: 2023, hoursOfSunshine: 128),
+    Activity(condition: "Not Walking", day: 17, month: 5, year: 2023, hoursOfSunshine: 68),
+    Activity(condition: "Not Walking", day: 18, month: 5, year: 2023, hoursOfSunshine: 78),
+    Activity(condition: "Walking", day: 19, month: 5, year: 2023, hoursOfSunshine: 163),
+    Activity(condition: "Walking", day: 20, month: 5, year: 2023, hoursOfSunshine: 133),
+    Activity(condition: "Walking", day: 21, month: 5, year: 2023, hoursOfSunshine: 176),
+    Activity(condition: "Not Walking", day: 22, month: 5, year: 2023, hoursOfSunshine: 82),
+    Activity(condition: "Not Walking", day: 23, month: 5, year: 2023, hoursOfSunshine: 54)
 ]
 
 struct ChartView: View {
@@ -78,9 +77,13 @@ struct ChartView: View {
             .frame(width: 350, height: 140)
         .chartForegroundStyleScale([
             "Running": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
-            "Not Running": Color(hue:0, saturation: 0.81, brightness: 0.76)
+            "Not Running": Color(hue:0, saturation: 0.81, brightness: 0.76),
+            "Incomplete": Color(hue: 0.0833, saturation: 0.86, brightness: 1.0)
         ])
         .chartYAxisLabel("Steps")
+        .chartXAxis {
+            AxisMarks(values: .automatic(desiredCount: 4))
+        }
     }
 }
 
@@ -100,7 +103,8 @@ struct YogaChartView: View {
             .frame(width: 350, height: 140)
         .chartForegroundStyleScale([
             "Yoga": Color(hue: 0.33, saturation: 0.81, brightness: 0.76),
-            "Not Yoga": Color(hue:0, saturation: 0.81, brightness: 0.76)
+            "Not Yoga": Color(hue:0, saturation: 0.81, brightness: 0.76),
+            "Incomplete": Color(hue: 0.0833, saturation: 0.86, brightness: 1.0)
         ])
         .chartYAxisLabel("Mins")
     }
@@ -163,8 +167,9 @@ struct ExperimentSummaryView: View {
                     .font(.title)
                     .fontWeight(.semibold)
                 HStack {
-                    Text("Mar 1, 2023 - Mar 13, 2023")
+                    Text("March 1 - March 10, 2023 (10 days)")
                         .font(.title3).bold().foregroundColor(.blue)
+                        
  
                         Spacer()
                         Button(action: {
@@ -223,7 +228,7 @@ struct ExperimentSummaryView: View {
                 }
                 
                 HStack {
-                    Text("Jun 12, 2022 - Jun 19, 2023")
+                    Text("April 12 - April 19, 2023 (8 days)")
                         .font(.title3).bold().foregroundColor(.blue)
                         Spacer()
                         Button(action: {
@@ -241,7 +246,7 @@ struct ExperimentSummaryView: View {
                 }
                 
                 HStack {
-                    Text("Aug 16, 2023 - Aug 24, 2023")
+                    Text("May 16 - May 23, 2023 (8 days)")
                             .font(.title3).bold().foregroundColor(.blue)
                         Spacer()
                         Button(action: {

@@ -61,7 +61,7 @@ struct HealthData: Identifiable {
 }
 
 let adherenceDays: [Activities] = [
-    .init(name: "Missing Days", days: 11),
+    .init(name: "Missing Days", days: 142),
     .init(name: "Complete Days", days: 629)
 ]
 
@@ -76,7 +76,7 @@ struct StepsChart: View {
             .font(.title3)
             .fontWeight(.semibold)
         
-        Text("Your daily average of 5,977 steps across 1.5 years is less than the recommendation of 10,000 steps per day.")
+        Text("Your daily average of 9,395 steps across 1.5 years is less than the recommendation of 10,000 steps per day.")
             .font(.system(size: 14))
             .font(.footnote)
 //            .foregroundStyle(.gray)
@@ -100,7 +100,7 @@ struct StepsChart: View {
 
             }
         }
-//        .chartYAxisLabel("Steps")
+        .chartYAxisLabel("Steps")
         .chartLegend(position: .bottom, alignment: .center, spacing: 7) {
             HStack {
                 Image(systemName: "circle")
@@ -126,7 +126,7 @@ struct StepsChart: View {
                 (weekday: "Wed", sales: 10221),
                 (weekday: "Thu", sales: 7877),
                 (weekday: "Fri", sales: 6400),
-                (weekday: "Sat", sales: 16721),
+                (weekday: "Sat", sales: 13721),
                 (weekday: "Sun", sales: 12282)
             ]
         )
@@ -171,7 +171,7 @@ struct LocationsChart: View {
 //
 //            }
         }
-//        .chartYAxisLabel("Mins")
+        .chartYAxisLabel("Mins")
         .chartLegend(position: .bottom, alignment: .center, spacing: 7) {
             HStack {
                 Image(systemName: "circle")

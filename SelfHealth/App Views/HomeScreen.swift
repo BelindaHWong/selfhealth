@@ -27,8 +27,8 @@ struct HomeScreen: View {
             }
             
             
-//            ExperimentSummaryView()
-            ExperimentScaffold()
+            ExperimentSummaryView()
+//            ExperimentScaffold()
                 .tabItem() {
                     Image(systemName: "list.clipboard.fill")
                     Text("Experiments")
