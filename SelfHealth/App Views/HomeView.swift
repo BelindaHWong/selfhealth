@@ -13,7 +13,6 @@ struct HomeView: View {
 //    @State var isDayOne = true
     @State var isDayOne = false
     @State private var selectedCause = "Select completion status"
-//    @State private var selectedCause = "Completed ✅"
     @State private var isChartSelected = true
     @State private var isListSelected = false
     var isExperimentActive: Bool = true
@@ -48,14 +47,14 @@ struct HomeView: View {
         isExperimentActive = true
     }
     
-    struct Person: Identifiable {
-        let givenName: String
-        var familyName: String
-        var emailAddress: String
+    struct TableEntry: Identifiable {
+        let date: String
+        var condition: String
+        var steps: String
         let id = UUID()
 
 
-        var fullName: String { givenName + " " + familyName }
+        var fullName: String { date + " " + condition }
         
     }
 
@@ -123,7 +122,6 @@ struct HomeView: View {
     struct DayOneWalkingChartView: View {
         var data: [Activity]
         var body: some View {
-            // Replace this with your chart view implementation
             Chart(data) {
             PointMark(
                     x: .value("Month", $0.date, unit: .weekdayOrdinal),
@@ -248,7 +246,6 @@ struct HomeView: View {
     struct PilatesChartView: View {
         var data: [Activity]
         var body: some View {
-            // Replace this with your chart view implementation
             Chart(data) {
             PointMark(
                     x: .value("Month", $0.date, unit: .weekdayOrdinal),
@@ -271,7 +268,6 @@ struct HomeView: View {
     struct WalkingChartView: View {
         var data: [Activity]
         var body: some View {
-            // Replace this with your chart view implementation
             Chart(data) {
             PointMark(
                     x: .value("Month", $0.date, unit: .weekdayOrdinal),
@@ -295,11 +291,11 @@ struct HomeView: View {
         var body: some View {
             HStack {
                 Text("Date   ")
-                    .padding(.horizontal, 30) // Add horizontal padding to "Date."
+                    .padding(.horizontal, 30)
                 Text("Gym")
-                    .padding(.horizontal, 27) // Add horizontal padding to "Gym."
+                    .padding(.horizontal, 27)
                 Text("Steps")
-                    .padding(.horizontal, 20) // Add horizontal padding to "Steps."
+                    .padding(.horizontal, 20)
             }
             .padding(10)
         }
@@ -323,11 +319,11 @@ struct HomeView: View {
         var body: some View {
             HStack {
                 Text("Date   ")
-                    .padding(.horizontal, 30) // Add horizontal padding to "Date."
+                    .padding(.horizontal, 30)
                 Text("Pilates")
-                    .padding(.horizontal, 20) // Add horizontal padding to "Gym."
+                    .padding(.horizontal, 20)
                 Text("Steps")
-                    .padding(.horizontal, 20) // Add horizontal padding to "Steps."
+                    .padding(.horizontal, 20)
             }
             .padding(10)
         }
@@ -415,49 +411,49 @@ struct HomeView: View {
         Activity(condition: "Incomplete", day: 5, month: 6, year: 2023, hoursOfSunshine: 9391)
     ]
     
-    @State private var dayOnePeople = [
-        Person(givenName: "Mon 29/05/23", familyName: " ✅", emailAddress: "  10,515")
+    @State private var dayOneData = [
+        TableEntry(date: "Mon 29/05/23", condition: " ✅", steps: "  10,515")
     ]
     
     @State private var dayOneMissing = [
-        Person(givenName: "Mon 29/05/23", familyName: " ⚠️", emailAddress: "  10,515")
+        TableEntry(date: "Mon 29/05/23", condition: " ⚠️", steps: "  10,515")
     ]
     
-    @State private var people = [
-        Person(givenName: "Mon 29/05/23", familyName: "  ✅", emailAddress: " 10,515"),
-        Person(givenName: "Tue 30/05/23", familyName: "   ⚠️", emailAddress: "   3,413"),
-        Person(givenName: "Wed 31/05/23", familyName: "  ❌", emailAddress: "   7,644"),
-        Person(givenName: "Thu 01/06/23", familyName: "   ✅", emailAddress: " 11,303"),
-        Person(givenName: "Fri 02/06/23", familyName: "     ❌", emailAddress: "  7,640"),
-        Person(givenName: "Sat 03/06/23", familyName: "   ✅", emailAddress: " 12,844"),
-        Person(givenName: "Sun 04/06/23", familyName: "  ❌", emailAddress: "  5,449"),
-        Person(givenName: "Mon 05/06/23", familyName: " ✅", emailAddress: "   9,391")
+    @State private var tableData = [
+        TableEntry(date: "Mon 29/05/23", condition: "  ✅", steps: " 10,515"),
+        TableEntry(date: "Tue 30/05/23", condition: "   ⚠️", steps: "   3,413"),
+        TableEntry(date: "Wed 31/05/23", condition: "  ❌", steps: "   7,644"),
+        TableEntry(date: "Thu 01/06/23", condition: "   ✅", steps: " 11,303"),
+        TableEntry(date: "Fri 02/06/23", condition: "     ❌", steps: "  7,640"),
+        TableEntry(date: "Sat 03/06/23", condition: "   ✅", steps: " 12,844"),
+        TableEntry(date: "Sun 04/06/23", condition: "  ❌", steps: "  5,449"),
+        TableEntry(date: "Mon 05/06/23", condition: " ✅", steps: "   9,391")
     ]
     
-    @State private var peopleMissing = [
-        Person(givenName: "Mon 29/05/23", familyName: "  ✅", emailAddress: " 10,515"),
-        Person(givenName: "Tue 30/05/23", familyName: "   ⚠️", emailAddress: "   3,413"),
-        Person(givenName: "Wed 31/05/23", familyName: "  ❌", emailAddress: "   7,644"),
-        Person(givenName: "Thu 01/06/23", familyName: "   ✅", emailAddress: " 11,303"),
-        Person(givenName: "Fri 02/06/23", familyName: "     ❌", emailAddress: "  7,640"),
-        Person(givenName: "Sat 03/06/23", familyName: "   ✅", emailAddress: " 12,844"),
-        Person(givenName: "Sun 04/06/23", familyName: "  ❌", emailAddress: "  5,449"),
-        Person(givenName: "Mon 05/06/23", familyName: " ⚠️", emailAddress: "   9,391")
+    @State private var dataMissing = [
+        TableEntry(date: "Mon 29/05/23", condition: "  ✅", steps: " 10,515"),
+        TableEntry(date: "Tue 30/05/23", condition: "   ⚠️", steps: "   3,413"),
+        TableEntry(date: "Wed 31/05/23", condition: "  ❌", steps: "   7,644"),
+        TableEntry(date: "Thu 01/06/23", condition: "   ✅", steps: " 11,303"),
+        TableEntry(date: "Fri 02/06/23", condition: "     ❌", steps: "  7,640"),
+        TableEntry(date: "Sat 03/06/23", condition: "   ✅", steps: " 12,844"),
+        TableEntry(date: "Sun 04/06/23", condition: "  ❌", steps: "  5,449"),
+        TableEntry(date: "Mon 05/06/23", condition: " ⚠️", steps: "   9,391")
     ]
 
-    struct PersonRow: View {
-        let person: Person
+    struct TableRow: View {
+        let entry: TableEntry
 
         var body: some View {
             HStack(spacing: 40) {
-                Text(person.givenName)
+                Text(entry.date)
                     .font(.subheadline)
                     
                 
-                Text(person.familyName)
+                Text(entry.condition)
                     .font(.subheadline)
 
-                Text(person.emailAddress)
+                Text(entry.steps)
                     .font(.subheadline)
                     .padding(.horizontal, 16)
             }
@@ -465,15 +461,15 @@ struct HomeView: View {
         }
     }
     
-    struct PeopleList: View {
-        @Binding var people: [Person]
+    struct GymList: View {
+        @Binding var tableData: [TableEntry]
 
         var body: some View {
             HeadingRow()
                  .font(.headline)
             
-            List(people) { person in
-                PersonRow(person: person)
+            List(tableData) { entry in
+                TableRow(entry: entry)
                     .listRowSeparator(.visible)
             }
             .listStyle(.plain)
@@ -481,14 +477,14 @@ struct HomeView: View {
     }
     
     struct PilatesList: View {
-        @Binding var people: [Person]
+        @Binding var tableData: [TableEntry]
 
         var body: some View {
             PilatesHeadingRow()
                  .font(.headline)
             
-            List(people) { person in
-                PersonRow(person: person)
+            List(tableData) { entry in
+                TableRow(entry: entry)
                     .listRowSeparator(.visible)
             }
             .listStyle(.plain)
@@ -496,14 +492,14 @@ struct HomeView: View {
     }
     
     struct WalkingList: View {
-        @Binding var people: [Person]
+        @Binding var tableData: [TableEntry]
 
         var body: some View {
             WalkingHeadingRow()
                  .font(.headline)
             
-            List(people) { person in
-                PersonRow(person: person)
+            List(tableData) { entry in
+                TableRow(entry: entry)
                     .listRowSeparator(.visible)
             }
             .listStyle(.plain)
@@ -823,36 +819,36 @@ struct HomeView: View {
                         } else if(isListSelected) {
                             if(isDayOne && selectedCause == "Incomplete ⚠️") {
                                 if(condition == "gym") {
-                                    PeopleList(people: $dayOneMissing)
+                                    GymList(tableData: $dayOneMissing)
                                 } else if(condition == "pilates") {
-                                    PilatesList(people: $dayOneMissing)
+                                    PilatesList(tableData: $dayOneMissing)
                                 } else if(condition == "walking") {
-                                    WalkingList(people: $dayOneMissing)
+                                    WalkingList(tableData: $dayOneMissing)
                                 }
                             }
                             else if(isDayOne && selectedCause == "Completed ✅") {
                                 if(condition == "gym") {
-                                    PeopleList(people: $dayOnePeople)
+                                    GymList(tableData: $dayOneData)
                                 } else if(condition == "pilates") {
-                                    PilatesList(people: $dayOnePeople)
+                                    PilatesList(tableData: $dayOneData)
                                 } else if(condition == "walking") {
-                                    WalkingList(people: $dayOnePeople)
+                                    WalkingList(tableData: $dayOneData)
                                 }
                             } else if(!isDayOne && selectedCause == "Completed ✅") {
                                 if(condition == "gym") {
-                                    PeopleList(people: $people)
+                                    GymList(tableData: $tableData)
                                 } else if(condition == "pilates") {
-                                    PilatesList(people: $people)
+                                    PilatesList(tableData: $tableData)
                                 } else if(condition == "walking") {
-                                    WalkingList(people: $people)
+                                    WalkingList(tableData: $tableData)
                                 }
                             } else if(!isDayOne && selectedCause == "Incomplete ⚠️") {
                                 if(condition == "gym") {
-                                    PeopleList(people: $peopleMissing)
+                                    GymList(tableData: $dataMissing)
                                 } else if(condition == "pilates") {
-                                    PilatesList(people: $peopleMissing)
+                                    PilatesList(tableData: $dataMissing)
                                 } else if(condition == "walking") {
-                                    WalkingList(people: $peopleMissing)
+                                    WalkingList(tableData: $dataMissing)
                                 }
                             }
                                 else {

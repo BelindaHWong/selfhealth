@@ -68,19 +68,6 @@ struct DataCompletenessChart: View {
     }
 }
 
-struct SalesSummary: Identifiable {
-    let weekday: Date
-    let sales: Int
-    var id: Date { weekday }
-}
-
-
-struct Series: Identifiable {
-    let city: String
-    let sales: [SalesSummary]
-    var id: String { city }
-}
-
 struct DataCompleteness: View {
     var body: some View {
         Text("Health Data Summary")
@@ -94,10 +81,7 @@ struct DataCompleteness: View {
             .font(.subheadline)
       
         DataCompletenessChart()
-        
-        
         StepsChart()
-//        LocationsChart()
     
     }
 }
