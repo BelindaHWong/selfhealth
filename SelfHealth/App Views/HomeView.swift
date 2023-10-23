@@ -104,7 +104,6 @@ struct HomeView: View {
     struct DayOnePilatesChartView: View {
         var data: [Activity]
         var body: some View {
-            // Replace this with your chart view implementation
             Chart(data) {
             PointMark(
                     x: .value("Month", $0.date, unit: .weekdayOrdinal),
@@ -445,12 +444,7 @@ struct HomeView: View {
         Person(givenName: "Sun 04/06/23", familyName: "  ❌", emailAddress: "  5,449"),
         Person(givenName: "Mon 05/06/23", familyName: " ⚠️", emailAddress: "   9,391")
     ]
-//    7644),
-//   Activity(condition: "Walking", day: 1, month: 6, year: 2023, hoursOfSunshine: 11303),
-//   Activity(condition: "No Walking", day: 2, month: 6, year: 2023, hoursOfSunshine: 7640),
-//   Activity(condition: "Walking", day: 3, month: 6, year: 2023, hoursOfSunshine: 12844),
-//   Activity(condition: "No Walking", day: 4, month: 6, year: 2023, hoursOfSunshine: 5449),
-//   Activity(condition: "Walking", day: 5, month: 6, year: 2023, hoursOfSunshine: 9391)
+
     struct PersonRow: View {
         let person: Person
 
@@ -462,8 +456,7 @@ struct HomeView: View {
                 
                 Text(person.familyName)
                     .font(.subheadline)
-//                    .foregroundColor(.secondary)
-//                    .padding()
+
                 Text(person.emailAddress)
                     .font(.subheadline)
                     .padding(.horizontal, 16)
@@ -476,14 +469,14 @@ struct HomeView: View {
         @Binding var people: [Person]
 
         var body: some View {
-            HeadingRow() // Add a heading row with titles.
+            HeadingRow()
                  .font(.headline)
             
             List(people) { person in
                 PersonRow(person: person)
-                    .listRowSeparator(.visible) // Apply gray lines as row separators.
+                    .listRowSeparator(.visible)
             }
-            .listStyle(.plain) // Use plain list style for cleaner appearance.
+            .listStyle(.plain)
         }
     }
     
@@ -491,14 +484,14 @@ struct HomeView: View {
         @Binding var people: [Person]
 
         var body: some View {
-            PilatesHeadingRow() // Add a heading row with titles.
+            PilatesHeadingRow()
                  .font(.headline)
             
             List(people) { person in
                 PersonRow(person: person)
-                    .listRowSeparator(.visible) // Apply gray lines as row separators.
+                    .listRowSeparator(.visible)
             }
-            .listStyle(.plain) // Use plain list style for cleaner appearance.
+            .listStyle(.plain)
         }
     }
     
@@ -506,14 +499,14 @@ struct HomeView: View {
         @Binding var people: [Person]
 
         var body: some View {
-            WalkingHeadingRow() // Add a heading row with titles.
+            WalkingHeadingRow()
                  .font(.headline)
             
             List(people) { person in
                 PersonRow(person: person)
-                    .listRowSeparator(.visible) // Apply gray lines as row separators.
+                    .listRowSeparator(.visible)
             }
-            .listStyle(.plain) // Use plain list style for cleaner appearance.
+            .listStyle(.plain)
         }
     }
     
@@ -541,10 +534,6 @@ struct HomeView: View {
    
     
     var body: some View {
-        //        toggleActive()
-
-        //        isExperimentActive = ExperimentRecommendation.isShowing
-        //        ExperimentRecommendation(isShowingNextScreen: isExperimentActive)
         if(isExperimentActive) {
             VStack(alignment: .leading, spacing: 11) {
                 if(isDayOne) {
@@ -609,16 +598,7 @@ struct HomeView: View {
                                 .foregroundColor(.black)
                                 .font(.headline)
                         }
-                        
-//                        Picker("Cause", selection: $selectedCause) {
-//                            ForEach(causeOptions, id: \.self) { option in
-//                                Text(option)
-//                                    .tag(option)
-//                            }
-//                        }
-//                        .pickerStyle(MenuPickerStyle())
-//                        .frame(maxWidth: .infinity, maxHeight: 20)
-//                        .font(.system(size: 9))
+
                         HStack {
                             Text(selectedCause)
                                 .onTapGesture {

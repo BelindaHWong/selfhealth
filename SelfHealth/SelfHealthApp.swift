@@ -12,9 +12,9 @@ class AppState: ObservableObject {
 //    @Published var isActivated: Bool = false
     @Published var isActivated: Bool = true
 //    @Published var condition: String = ""
-//    @Published var condition: String = "gym"
+    @Published var condition: String = "gym"
 //    @Published var condition: String = "pilates"
-    @Published var condition: String = "walking"
+//    @Published var condition: String = "walking"
 }
 
 @main
@@ -43,9 +43,7 @@ struct SelfHealthApp: App {
     }
     
     var body: some Scene {
-        
         WindowGroup {
-//            ContentView()
             OnboardingContentView().environmentObject(healthStore).environmentObject(appState)
         }
     }

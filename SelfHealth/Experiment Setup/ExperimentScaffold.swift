@@ -20,10 +20,8 @@ struct ExperimentScaffold: View {
 
     
     var body: some View {
-    
         VStack {
             if isShowingNextScreen {
-                
                 ExperimentRecommendation()
             } else {
                 VStack(alignment: .center, spacing: 20) {
@@ -36,18 +34,18 @@ struct ExperimentScaffold: View {
                         .multilineTextAlignment(.center)
 
                     HStack(spacing: 20) {
-                        Image("run") // Replace "image1" with the name of your first image
+                        Image("run")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 100, height: 100) // Set the size of your first image
-                        Image("right-arrow") // Replace "image2" with the name of your second image
+                            .frame(width: 100, height: 100)
+                        Image("right-arrow")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 100, height: 100) // Set the size of your second image
-                        Image("sleeping") // Replace "image2" with the name of your second image
+                            .frame(width: 100, height: 100)
+                        Image("sleeping")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 100, height: 100) // Set the size of your second image
+                            .frame(width: 100, height: 100)
                     }
                     
                     .padding()
@@ -75,43 +73,18 @@ struct ExperimentScaffold: View {
                         HStack(spacing: 10) {
                             Image(systemName: "waveform.path.ecg")
                                 .resizable()
-                                .frame(width: 24, height: 24) // Set the size of the health icon
-                                .foregroundColor(.white) // Set the color of the health icon
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(.white)
                             
                             Text("Experiment Recommendation")
-                                .foregroundColor(.white) // Set the text color to white
-                                .font(.headline) // Set the font style for the label
+                                .foregroundColor(.white)
+                                .font(.headline)
                         }
                         .padding()
-                        .background(Color.blue) // Set the background color of the button
-                        .cornerRadius(16) // Set the corner radius of the button
+                        .background(Color.blue)
+                        .cornerRadius(16)
                     }
 
-    //                Text("OR").bold()
-    //                HStack {
-    //                            VStack {
-    //                                Text("Cause").foregroundColor(Color.red).bold()
-    //                                Picker("Cause", selection: $selectedCause) {
-    //                                    ForEach(causeOptions, id: \.self) { option in
-    //                                        Text(option).tag(option)
-    //                                    }
-    //                                }
-    //                                .pickerStyle(MenuPickerStyle())
-    //                                .frame(maxWidth: .infinity) // Ensure the Picker takes full width
-    //
-    //                            }
-    //
-    //                            VStack {
-    //                                Text("Effect").foregroundColor(green).bold()
-    //                                Picker("Effect", selection: $selectedEffect) {
-    //                                    ForEach(effectOptions, id: \.self) { option in
-    //                                        Text(option).tag(option)
-    //                                    }
-    //                                }
-    //                                .pickerStyle(MenuPickerStyle())
-    //                                .frame(maxWidth: .infinity) // Ensure the Picker takes full width
-    //                            }
-    //                }
                     .padding()
                     
                 }
@@ -121,10 +94,5 @@ struct ExperimentScaffold: View {
             }
             
     }
-    
-//    struct ExperimentScaffold_Previews: PreviewProvider {
-//        static var previews: some View {
-//            ExperimentScaffold(homeScreen: homeView)
-//        }
-//    }
+
 }

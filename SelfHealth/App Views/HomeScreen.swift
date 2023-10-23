@@ -11,8 +11,6 @@ import SwiftUI
 struct HomeScreen: View {
     @State private var isActive = false
     @EnvironmentObject private var appState: AppState
-//    var homeView = HomeView()
-//    private init() {}
     
     var body: some View {
         var homeView = HomeView(
@@ -39,11 +37,7 @@ struct HomeScreen: View {
                     Image(systemName: "heart.fill")
                     Text("Health")
                 }
-//            ProfileView()
-//                .tabItem() {
-//                    Image(systemName: "person.circle.fill")
-//                    Text("Profile")
-//                }
+
         }
     }
 }

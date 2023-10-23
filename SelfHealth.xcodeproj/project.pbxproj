@@ -10,28 +10,20 @@
 		780AB1D22A65516100382B93 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AB1D12A65516100382B93 /* OnboardingPage.swift */; };
 		780AB1D42A65519D00382B93 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AB1D32A65519D00382B93 /* OnboardingPageView.swift */; };
 		780AB1D62A6551D400382B93 /* OnboardingContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AB1D52A6551D400382B93 /* OnboardingContentView.swift */; };
-		780AB1DA2A6555E600382B93 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AB1D92A6555E600382B93 /* CardCell.swift */; };
 		780AB1DE2A65684A00382B93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 780AB1DD2A65684A00382B93 /* Main.storyboard */; };
-		780AB1E02A65690000382B93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AB1DF2A65690000382B93 /* ViewController.swift */; };
-		780AB1E42A66B14900382B93 /* ViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AB1E32A66B14900382B93 /* ViewControllerRepresentable.swift */; };
-		780AB1E62A66B94E00382B93 /* ExperimentPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AB1E52A66B94E00382B93 /* ExperimentPageView.swift */; };
 		780AB1EA2A6922A100382B93 /* experiment-animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = 780AB1E92A6922A100382B93 /* experiment-animated.gif */; };
-		780AB1F02A694B3D00382B93 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AB1EF2A694B3D00382B93 /* DashboardView.swift */; };
 		780C3C612A6D478D0042F14E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780C3C602A6D478D0042F14E /* HomeView.swift */; };
-		780C3C632A6D47980042F14E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780C3C622A6D47980042F14E /* ProfileView.swift */; };
 		780C3C652A6D47A70042F14E /* ExperimentSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780C3C642A6D47A70042F14E /* ExperimentSummaryView.swift */; };
 		780C3C672A6E9D7B0042F14E /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780C3C662A6E9D7B0042F14E /* HealthView.swift */; };
 		780C3C692A6E9FB90042F14E /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780C3C682A6E9FB90042F14E /* HomeScreen.swift */; };
 		780C3C6C2A6EAADD0042F14E /* ExperimentScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780C3C6B2A6EAADD0042F14E /* ExperimentScaffold.swift */; };
 		781ACC2C2A79138600DF05F6 /* ExperimentRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781ACC2B2A79138600DF05F6 /* ExperimentRecommendation.swift */; };
 		787B15482A4472CB00A56BAC /* SelfHealthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787B15472A4472CB00A56BAC /* SelfHealthApp.swift */; };
-		787B154A2A4472CB00A56BAC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787B15492A4472CB00A56BAC /* ContentView.swift */; };
 		787B154C2A4472CD00A56BAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787B154B2A4472CD00A56BAC /* Assets.xcassets */; };
 		787B154F2A4472CD00A56BAC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787B154E2A4472CD00A56BAC /* Preview Assets.xcassets */; };
 		787B15592A4472CD00A56BAC /* SelfHealthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787B15582A4472CD00A56BAC /* SelfHealthTests.swift */; };
 		787B15632A4472CD00A56BAC /* SelfHealthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787B15622A4472CD00A56BAC /* SelfHealthUITests.swift */; };
 		787B15652A4472CD00A56BAC /* SelfHealthUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787B15642A4472CD00A56BAC /* SelfHealthUITestsLaunchTests.swift */; };
-		78D51C152A7744C500A6439B /* HealthKitIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D51C142A7744C500A6439B /* HealthKitIntegration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,15 +47,9 @@
 		780AB1D12A65516100382B93 /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
 		780AB1D32A65519D00382B93 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		780AB1D52A6551D400382B93 /* OnboardingContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentView.swift; sourceTree = "<group>"; };
-		780AB1D92A6555E600382B93 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		780AB1DD2A65684A00382B93 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		780AB1DF2A65690000382B93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		780AB1E32A66B14900382B93 /* ViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRepresentable.swift; sourceTree = "<group>"; };
-		780AB1E52A66B94E00382B93 /* ExperimentPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentPageView.swift; sourceTree = "<group>"; };
 		780AB1E92A6922A100382B93 /* experiment-animated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "experiment-animated.gif"; sourceTree = "<group>"; };
-		780AB1EF2A694B3D00382B93 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		780C3C602A6D478D0042F14E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		780C3C622A6D47980042F14E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		780C3C642A6D47A70042F14E /* ExperimentSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentSummaryView.swift; sourceTree = "<group>"; };
 		780C3C662A6E9D7B0042F14E /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthView.swift; sourceTree = "<group>"; };
 		780C3C682A6E9FB90042F14E /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -71,7 +57,6 @@
 		781ACC2B2A79138600DF05F6 /* ExperimentRecommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentRecommendation.swift; sourceTree = "<group>"; };
 		787B15442A4472CB00A56BAC /* SelfHealth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfHealth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		787B15472A4472CB00A56BAC /* SelfHealthApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfHealthApp.swift; sourceTree = "<group>"; };
-		787B15492A4472CB00A56BAC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		787B154B2A4472CD00A56BAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		787B154E2A4472CD00A56BAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		787B15542A4472CD00A56BAC /* SelfHealthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SelfHealthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,7 +65,6 @@
 		787B15622A4472CD00A56BAC /* SelfHealthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfHealthUITests.swift; sourceTree = "<group>"; };
 		787B15642A4472CD00A56BAC /* SelfHealthUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfHealthUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		78D51C132A773E1500A6439B /* SelfHealth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelfHealth.entitlements; sourceTree = "<group>"; };
-		78D51C142A7744C500A6439B /* HealthKitIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitIntegration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				780C3C602A6D478D0042F14E /* HomeView.swift */,
-				780C3C622A6D47980042F14E /* ProfileView.swift */,
 				780C3C642A6D47A70042F14E /* ExperimentSummaryView.swift */,
 				780C3C662A6E9D7B0042F14E /* HealthView.swift */,
 				780C3C682A6E9FB90042F14E /* HomeScreen.swift */,
@@ -133,8 +116,6 @@
 		780C3C6A2A6EA9E30042F14E /* Experiment Setup */ = {
 			isa = PBXGroup;
 			children = (
-				780AB1E52A66B94E00382B93 /* ExperimentPageView.swift */,
-				78D51C142A7744C500A6439B /* HealthKitIntegration.swift */,
 				780C3C6B2A6EAADD0042F14E /* ExperimentScaffold.swift */,
 				781ACC2B2A79138600DF05F6 /* ExperimentRecommendation.swift */,
 			);
@@ -169,12 +150,7 @@
 				780C3C5F2A6D47650042F14E /* App Views */,
 				780C3C5E2A6D47510042F14E /* Onboarding */,
 				780AB1DD2A65684A00382B93 /* Main.storyboard */,
-				780AB1D92A6555E600382B93 /* CardCell.swift */,
 				787B15472A4472CB00A56BAC /* SelfHealthApp.swift */,
-				780AB1EF2A694B3D00382B93 /* DashboardView.swift */,
-				787B15492A4472CB00A56BAC /* ContentView.swift */,
-				780AB1DF2A65690000382B93 /* ViewController.swift */,
-				780AB1E32A66B14900382B93 /* ViewControllerRepresentable.swift */,
 				787B154B2A4472CD00A56BAC /* Assets.xcassets */,
 				780AB1E92A6922A100382B93 /* experiment-animated.gif */,
 				787B154D2A4472CD00A56BAC /* Preview Content */,
@@ -339,23 +315,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				780AB1E62A66B94E00382B93 /* ExperimentPageView.swift in Sources */,
-				78D51C152A7744C500A6439B /* HealthKitIntegration.swift in Sources */,
-				787B154A2A4472CB00A56BAC /* ContentView.swift in Sources */,
 				780C3C672A6E9D7B0042F14E /* HealthView.swift in Sources */,
 				787B15482A4472CB00A56BAC /* SelfHealthApp.swift in Sources */,
 				780AB1D42A65519D00382B93 /* OnboardingPageView.swift in Sources */,
-				780C3C632A6D47980042F14E /* ProfileView.swift in Sources */,
 				780C3C6C2A6EAADD0042F14E /* ExperimentScaffold.swift in Sources */,
 				780AB1D22A65516100382B93 /* OnboardingPage.swift in Sources */,
 				780C3C612A6D478D0042F14E /* HomeView.swift in Sources */,
 				780C3C652A6D47A70042F14E /* ExperimentSummaryView.swift in Sources */,
-				780AB1E02A65690000382B93 /* ViewController.swift in Sources */,
-				780AB1E42A66B14900382B93 /* ViewControllerRepresentable.swift in Sources */,
 				780C3C692A6E9FB90042F14E /* HomeScreen.swift in Sources */,
-				780AB1F02A694B3D00382B93 /* DashboardView.swift in Sources */,
 				780AB1D62A6551D400382B93 /* OnboardingContentView.swift in Sources */,
-				780AB1DA2A6555E600382B93 /* CardCell.swift in Sources */,
 				781ACC2C2A79138600DF05F6 /* ExperimentRecommendation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

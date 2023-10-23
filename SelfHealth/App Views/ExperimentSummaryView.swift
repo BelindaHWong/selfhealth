@@ -64,7 +64,6 @@ var walkingData: [Activity] = [
 struct ChartView: View {
     var data: [Activity]
     var body: some View {
-        // Replace this with your chart view implementation
         Chart(data) {
         PointMark(
                 x: .value("Month", $0.date, unit: .weekdayOrdinal),
@@ -90,7 +89,6 @@ struct ChartView: View {
 struct YogaChartView: View {
     var data: [Activity]
     var body: some View {
-        // Replace this with your chart view implementation
         Chart(data) {
         PointMark(
                 x: .value("Month", $0.date, unit: .weekdayOrdinal),
@@ -113,7 +111,6 @@ struct YogaChartView: View {
 struct WalkingChartView: View {
     var data: [Activity]
     var body: some View {
-        // Replace this with your chart view implementation
         Chart(data) {
         PointMark(
                 x: .value("Month", $0.date, unit: .weekdayOrdinal),
@@ -134,15 +131,10 @@ struct WalkingChartView: View {
 
 struct TableView: View {
     var body: some View {
-        // Replace this with your table view implementation
         Text("Table View")
     }
 }
-
-
-
-
-                                                    
+                                           
 struct ExperimentSummaryView: View {
     @State var isActive = true
     @State private var showMoreText1 = true
@@ -186,42 +178,10 @@ struct ExperimentSummaryView: View {
                 if showMoreText1 {
                     HStack {
                         Text("If you run, your step count is moderately higher.").font(.subheadline)
-//                        Button(action: {
-//                            isChartSelected.toggle()
-//                            isListSelected = false
-//                        }) {
-//                            VStack {
-//                                Image(systemName: "chart.bar.fill")
-//                                    .resizable()
-//                                    .frame(width: 15, height: 15)
-//                                    .foregroundColor(isChartSelected ? .blue : .gray)
-//
-//                                Text("Chart")
-//                                    .foregroundColor(isChartSelected ? .blue : .gray)
-//                                    .font(.caption)
-//                            }
-//                        }
-                        
-//                        Button(action: {
-//                            isListSelected.toggle()
-//                            isChartSelected = false
-//                        }) {
-//                            VStack {
-//                               Image(systemName: "list.bullet")
-//                                   .resizable()
-//                                   .frame(width: 15, height: 15)
-//                                   .foregroundColor(isListSelected ? .blue : .gray)
-//
-//                               Text("Table")
-//                                   .foregroundColor(isListSelected ? .blue : .gray)
-//                                   .font(.caption)
-//                           }
-//                        }
-                        
                     }.padding(.bottom, 5)
-//                    if(isChartSelected) {
+
                         ChartView(data: data)
-//                    }
+
                 } else {
                     Text("If you run, your step count is moderately higher.").font(.subheadline).padding(.bottom, 5)
                     
@@ -267,7 +227,6 @@ struct ExperimentSummaryView: View {
                 Spacer()
             }.padding()
         }
-
 
     }
 }
