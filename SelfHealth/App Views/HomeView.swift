@@ -660,7 +660,7 @@ struct HomeView: View {
                             }
                         } else {
                             if(condition == "gym") {
-                                let header = Text("Your steps are clasified ") + Text("physically active").foregroundColor(Color(hue: 0.33, saturation: 0.81, brightness: 0.76)).bold() + Text(" on gym days and ") + Text("physically inactive").foregroundColor(Color(hue:0, saturation: 0.81, brightness: 0.76)).bold() + Text(" on non-gym days.")
+                                let header = Text("Your steps are classified ") + Text("physically active").foregroundColor(Color(hue: 0.33, saturation: 0.81, brightness: 0.76)).bold() + Text(" on gym days and ") + Text("physically inactive").foregroundColor(Color(hue:0, saturation: 0.81, brightness: 0.76)).bold() + Text(" on non-gym days.")
                               
                                 header
                                     .foregroundColor(.black)
