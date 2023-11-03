@@ -10,8 +10,8 @@ import Charts
 
 struct HomeView: View {
     // isDayOne default is true. False for second part of user study.
-//    @State var isDayOne = true
-    @State var isDayOne = false
+    @State var isDayOne = true
+//    @State var isDayOne = false
     @State private var selectedCause = "Select completion status"
     @State private var isChartSelected = true
     @State private var isListSelected = false

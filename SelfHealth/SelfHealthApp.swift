@@ -12,10 +12,10 @@ class AppState: ObservableObject {
     // The isActivated variable is false for first part of study (Day 1) and true for second part of study (Day 8).
     // The condition variable is initially set to empty string "" and changes to an exercise selection for second part of study after user chooses an exercise option of "gym"/"pilates"/"walking".
     
-//    @Published var isActivated: Bool = false
-    @Published var isActivated: Bool = true
-//    @Published var condition: String = ""
-    @Published var condition: String = "gym"
+    @Published var isActivated: Bool = false
+//    @Published var isActivated: Bool = true
+    @Published var condition: String = ""
+//    @Published var condition: String = "gym"
 //    @Published var condition: String = "pilates"
 //    @Published var condition: String = "walking"
 }

@@ -26,7 +26,7 @@ To view the complete self-experiment:
 4. Set condition = "pilates" or "gym" or "walking"
 
 ## Acknowledgements
-ChatGPT 3.5 was used for code debugging and searching Swift documentation to create this application. I would like to thank my Professor Judy Kay and the Honours Group at University of Sydney for their thoughtful insights and contributions for the application design.
+ChatGPT 3.5 was used for code debugging and searching Swift documentation to create this application. I would like to thank my Professor Judy Kay and the HCI Honours Group at University of Sydney for their thoughtful insights and contributions for the application design.
 
 Good luck experimenting! 🧪📊✨
 

@@ -24,8 +24,8 @@ struct HomeScreen: View {
             
             // First part of user study uses ExperimentScaffold(), comment this out in second part of study to show ExperimentSummaryView() for past experiments, and vice versa. Alternate as needed, only one visible at a time in this view controller.
             
-            ExperimentSummaryView()
-//            ExperimentScaffold()
+//            ExperimentSummaryView()
+            ExperimentScaffold()
                 .tabItem() {
                     Image(systemName: "list.clipboard.fill")
                     Text("Experiments")
