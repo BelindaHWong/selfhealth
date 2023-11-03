@@ -20,10 +20,16 @@ Welcome to SelfHealth! This is an iOS application designed to help guide you thr
 
 ### Prototype Instructions
 To view the complete self-experiment:
-1. Comment out ExperimentScaffold() and include ExperimentSummaryView() in HomeScreen class
-2. Set isDayOne = false in HomeView class
+1. In HomeScreen class, comment out ExperimentScaffold() and include ExperimentSummaryView() 
+2. In HomeView class, set isDayOne = false
 3. In SelfHealthApp, set isActivated = true
-4. Set condition = "pilates" or "gym" or "walking"
+4. In SelfHealthApp, set condition = "pilates" or "gym" or "walking"
+
+To view day 1 of the self-experiment:
+1. In HomeScreen class, comment out ExperimentSummaryView() and include ExperimentScaffold()
+2. In HomeView class, set isDayOne = true 
+3. In SelfHealthApp, set isActivated = true
+4. In SelfHealthApp, set condition = ""
 
 ## Acknowledgements
 ChatGPT 3.5 was used for code debugging and searching Swift documentation to create this application. I would like to thank my Professor Judy Kay and the HCI Honours Group at University of Sydney for their thoughtful insights and contributions for the application design.
