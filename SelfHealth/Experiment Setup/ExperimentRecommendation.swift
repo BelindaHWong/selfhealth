@@ -161,15 +161,7 @@ struct LocationsChart: View {
                 .foregroundStyle(by: .value("City", series.type))
                 .symbol(by: .value("City", series.type))
                 .interpolationMethod(.catmullRom)
-
             }
-            
-//            .annotation(position: .top, alignment: .trailing) {
-//                Text("Guideline: \(recValue, format: .number)")
-//                    .font(.headline)
-//                    .foregroundStyle(.orange)
-//
-//            }
         }
         .chartYAxisLabel("Mins")
         .chartLegend(position: .bottom, alignment: .center, spacing: 7) {
@@ -208,9 +200,6 @@ struct LocationsChart: View {
 func date(year: Int, month: Int, day: Int = 1) -> Date {
     Calendar.current.date(from: DateComponents(year: year, month: month, day: day)) ?? Date()
 }
-//['2023-03-31', '2023-04-03', '2023-05-08', '2023-05-18', '2023-06-12', '2023-06-19', '2023-07-01', '2023-07-02', '2023-07-03', '2023-07-04', '2023-07-31']
-
-
 
 struct ExperimentRecommendation: View {
     @State private var isWalkingSelected = false
@@ -257,14 +246,7 @@ struct ExperimentRecommendation: View {
     var body: some View {
           
         if(isShowingNextScreen) {
-//                            HomeView.init(isExperimentActive: true)
             ExperimentSummaryView(isActive: true)
-            
-        
-//            HomeView.toggleExperimentActive(self: HomeView)
-//            HomeView(isExperimentActive: true)
-//            HomeView(isExperimentActive: isShowingNextScreen)
-           
         } else {
             
             VStack(alignment: .leading, spacing: 10) {
@@ -326,15 +308,18 @@ struct ExperimentRecommendation: View {
                                 appState.condition = selectedExercise
                             }) {
                                 Text("Start Experiment!")
-                                    .font(.footnote)
-                                    .foregroundColor(.blue)
+                                    .font(.subheadline).bold()
+                                    .foregroundColor(.white)
+                                    .frame(width: 200, height: 35)
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
 
                             }
                         }
-                        
+                        Spacer()
                     }
                 }
-                .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                .padding(EdgeInsets(top: 10, leading: 20, bottom: 6, trailing: 20))
                 .background(Color.green.opacity(0.25))
                 .cornerRadius(12)
                 .frame(width:360, height:170)
